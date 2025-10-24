@@ -38,7 +38,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center space-x-2 group">
             <Terminal className="h-6 w-6 text-accent group-hover:text-accent/70 transition-colors duration-300" />
             <span className="font-display font-semibold text-xl text-text-primary group-hover:text-accent transition-colors duration-300">
-              shahab.dev
+              Shahab Alam
             </span>
           </Link>
 
