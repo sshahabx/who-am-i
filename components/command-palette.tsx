@@ -76,23 +76,23 @@ export function CommandPalette() {
 
             <Command.Group heading="Sections" className="mb-2">
               <Command.Item
-                onSelect={() => scrollToSection("about")}
+                onSelect={() => scrollToSection("whoami")}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-muted transition-colors"
               >
                 <span>About</span>
               </Command.Item>
               <Command.Item
-                onSelect={() => scrollToSection("projects")}
+                onSelect={() => scrollToSection("typing-stats")}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-muted transition-colors"
               >
-                <span>Projects</span>
+                <span>Typing Stats</span>
               </Command.Item>
               <Command.Item
-                onSelect={() => scrollToSection("contact")}
+                onSelect={() => scrollToSection("newsletter")}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-muted transition-colors"
               >
                 <Mail className="h-4 w-4" />
-                <span>Contact</span>
+                <span>Newsletter</span>
               </Command.Item>
             </Command.Group>
           </Command.List>

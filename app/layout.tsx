@@ -3,6 +3,7 @@ import { Outfit, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { CommandPalette } from "@/components/command-palette"
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -54,6 +55,7 @@ export default function RootLayout({
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <CommandPalette />
       </body>
     </html>
   )

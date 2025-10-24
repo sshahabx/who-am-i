@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ChevronDown } from "lucide-react"
 import Image from "next/image"
 
 export function HeroSection() {
@@ -60,12 +60,13 @@ export function HeroSection() {
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="text-base border-text-secondary text-text-primary hover:bg-text-secondary hover:text-white transition-all duration-300"
+                  className="text-base border-text-secondary text-text-primary hover:bg-text-secondary hover:text-white transition-all duration-300 flex items-center gap-2"
                   onClick={() => {
                     document.getElementById('whoami')?.scrollIntoView({ behavior: 'smooth' })
                   }}
                 >
                   Know More
+                  <ChevronDown className="h-4 w-4" />
                 </Button>
               </motion.div>
         </div>
