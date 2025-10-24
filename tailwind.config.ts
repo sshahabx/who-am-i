@@ -43,9 +43,8 @@ const config: Config = {
         'widest': '0.1em',
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-blob": "radial-gradient(ellipse at center, rgba(155, 169, 251, 0.1) 0%, transparent 70%)",
         "gradient-radial": "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
+        "gradient-blob": "radial-gradient(ellipse at center, rgba(155, 169, 251, 0.1) 0%, transparent 70%)",
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
