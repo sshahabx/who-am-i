@@ -26,7 +26,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="border-t border-border/20 py-16 mt-24 bg-background">
+    <footer className="border-t border-neutral-200/60 pt-32 pb-16 mt-24 bg-[#E8E8E8] relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

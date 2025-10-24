@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export function About() {
   return (
-    <section className="section-padding bg-background">
+    <section id="whoami" className="section-padding bg-[#FDFDFD]">
       <div className="container-padding">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Text Content */}

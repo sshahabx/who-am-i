@@ -5,7 +5,7 @@ import Image from "next/image"
 
 export function TypingStats() {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-16 bg-[#F6F6F6]">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export function TypingStats() {
           </div>
 
           {/* Stats Display - Compact Horizontal Layout */}
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
                 <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">1,900</div>
@@ -43,15 +43,15 @@ export function TypingStats() {
             {/* Activity Calendar */}
             <div className="border-t border-border/20 pt-6">
               <h4 className="text-xl font-medium text-text-primary mb-4 font-jetbrains-mono">Activity Calendar</h4>
-              <div className="flex justify-center">
-                <Image 
-                  src="/calender.png" 
-                  alt="Typing activity calendar" 
-                  width={800}
-                  height={400}
-                  className="rounded-lg shadow-lg max-w-full h-auto"
-                />
-              </div>
+                <div className="flex justify-center">
+                  <Image 
+                    src="/calender.png" 
+                    alt="Typing activity calendar" 
+                    width={1000}
+                    height={500}
+                    className="rounded-lg shadow-lg w-full max-w-5xl h-auto"
+                  />
+                </div>
             </div>
 
             {/* Footer Link */}

@@ -12,7 +12,7 @@ export function TechTicker() {
   const duplicatedStack = [...techStack, ...techStack]
 
   return (
-    <section className="py-16 overflow-hidden bg-background border-y border-border/20">
+    <section className="py-16 overflow-hidden bg-[#F9F9F9] border-y border-neutral-200/50 mb-20">
       <div className="relative">
         <motion.div
           className="flex space-x-12 whitespace-nowrap"
