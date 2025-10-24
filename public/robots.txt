@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://boti.dev/sitemap.xml
+
+
+

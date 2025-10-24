@@ -1,0 +1,132 @@
+---
+title: "Writing Terraform Modules That Don't Suck"
+description: "Lessons learned from building reusable infrastructure modules across three cloud providers. Spoiler: it's all about the abstractions."
+date: "2025-10-15"
+tags: ["Terraform", "IaC", "DevOps"]
+readingTime: 8
+---
+
+# Writing Terraform Modules That Don't Suck
+
+If you've ever worked with Terraform at scale, you know that modules can either be your best friend or your worst nightmare. After building infrastructure across AWS, Azure, and GCP for the past few years, I've learned some hard lessons about what makes a good module.
+
+## The Problem with Most Terraform Modules
+
+Most Terraform modules fall into one of two categories:
+
+1. **Too specific** - They solve exactly one problem for one use case and can't be reused
+2. **Too generic** - They try to support every possible configuration and become impossible to maintain
+
+The sweet spot is somewhere in the middle, and finding it requires careful thought about abstractions.
+
+## Principles for Good Modules
+
+### 1. Start with the Interface
+
+Before writing any code, think about how you want to use the module. What would the ideal API look like?
+
+```hcl
+module "app_cluster" {
+  source = "./modules/kubernetes-cluster"
+  
+  environment = "production"
+  region      = "us-west-2"
+  
+  node_pools = {
+    general = {
+      instance_type = "t3.large"
+      min_size      = 3
+      max_size      = 10
+    }
+  }
+}
+```
+
+Clean, readable, and focused on *what* you want, not *how* it's implemented.
+
+### 2. Use Sensible Defaults
+
+Don't make users configure everything. Provide defaults that work for 80% of use cases.
+
+```hcl
+variable "node_pools" {
+  type = map(object({
+    instance_type = string
+    min_size      = optional(number, 2)
+    max_size      = optional(number, 5)
+    disk_size     = optional(number, 100)
+  }))
+}
+```
+
+Notice the `optional()` function - it's a game changer for module design.
+
+### 3. Validate Input Early
+
+Use validation blocks to catch errors before they hit the provider:
+
+```hcl
+variable "environment" {
+  type = string
+  
+  validation {
+    condition     = contains(["dev", "staging", "production"], var.environment)
+    error_message = "Environment must be dev, staging, or production."
+  }
+}
+```
+
+This saves debugging time and makes the module self-documenting.
+
+## Real-World Example
+
+Here's a simplified version of a module I use for creating EKS clusters:
+
+```hcl
+module "eks_cluster" {
+  source = "terraform-aws-modules/eks/aws"
+  
+  cluster_name    = "\${var.environment}-\${var.project_name}"
+  cluster_version = "1.28"
+  
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnets
+  
+  eks_managed_node_groups = {
+    for pool_name, pool_config in var.node_pools : pool_name => {
+      instance_types = [pool_config.instance_type]
+      min_size       = pool_config.min_size
+      max_size       = pool_config.max_size
+      desired_size   = pool_config.min_size
+      
+      labels = {
+        Environment = var.environment
+        NodePool    = pool_name
+      }
+    }
+  }
+}
+```
+
+## Testing Your Modules
+
+Don't skip testing. Use `terraform-compliance` or write tests with Terratest. Your future self will thank you.
+
+## Conclusion
+
+Good Terraform modules are all about finding the right level of abstraction. They should:
+
+- Have a clean, intuitive interface
+- Provide sensible defaults
+- Validate inputs early
+- Be well-documented
+- Be thoroughly tested
+
+Remember: A module is a contract between you and your team. Make it a good one.
+
+---
+
+*Have thoughts on Terraform module design? Let's discuss on [Twitter](https://x.com/botisarkar).*
+
+
+
