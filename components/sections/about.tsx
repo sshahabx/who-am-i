@@ -17,7 +17,7 @@ export function About() {
           >
             <div className="space-y-6">
               <h2 className="text-4xl md:text-5xl font-bold text-text-primary leading-tight">
-                whoami
+                $whoami
               </h2>
               <p className="text-lg text-text-secondary leading-relaxed">
                 I have a background in cybersecurity and cloud infrastructure. I enjoy creating systems that are efficient, scalable, and secure, but also feel simple and purposeful. Over time I've found myself drawn to minimalism, both in design and in how I approach my work and life. For me, good engineering is about keeping things clear, reliable, and human - whether that's in code or in everyday decisions.

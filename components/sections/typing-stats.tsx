@@ -17,7 +17,7 @@ export function TypingStats() {
           {/* Header */}
           <div className="mb-8">
             <h3 className="text-4xl font-bold text-text-primary font-jetbrains-mono">
-              i know typing
+              i know how to type
             </h3>
           </div>
 

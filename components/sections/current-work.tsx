@@ -16,7 +16,7 @@ export function CurrentWork() {
           {/* Header */}
           <div className="mb-12">
             <h3 className="text-4xl font-bold text-text-primary font-jetbrains-mono">
-              current work
+              Currently At
             </h3>
           </div>
 

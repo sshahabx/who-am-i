@@ -40,7 +40,7 @@ export function HeroSection() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-xl md:text-2xl text-text-primary font-medium leading-relaxed"
           >
-            I create, manage, and (occasionally) destroy cloud infrastructure — intentionally.
+            I create, manage, and (occasionally) destroy cloud infrastructure - intentionally.
           </motion.p>
 
               {/* CTA Buttons */}
