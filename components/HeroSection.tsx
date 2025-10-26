@@ -17,9 +17,9 @@ export function HeroSection() {
       {/* Bottom shadow for separation */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/5 to-transparent"></div>
       
-      <div className="container-padding flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10">
+      <div className="container-padding flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 relative z-10">
         {/* Text Content - Left Side */}
-        <div className="text-center lg:text-left space-y-8 flex-1 max-w-2xl">
+        <div className="text-center lg:text-left space-y-8 flex-1 max-w-2xl order-1 lg:order-1">
           {/* Main Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -43,12 +43,12 @@ export function HeroSection() {
             I create, manage, and (occasionally) destroy cloud infrastructure - intentionally.
           </motion.p>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Desktop only */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
-                className="pt-4 flex flex-col sm:flex-row gap-4"
+                className="pt-4 hidden lg:flex flex-row gap-4"
               >
                 <Button 
                   size="lg" 
@@ -76,7 +76,7 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="relative lg:max-w-md"
+          className="relative lg:max-w-md order-2 lg:order-2"
         >
           {/* Image container with clean rounded frame */}
           <motion.div
@@ -98,6 +98,33 @@ export function HeroSection() {
               priority
             />
           </motion.div>
+        </motion.div>
+
+        {/* CTA Buttons - Mobile only (below image) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="flex lg:hidden flex-row gap-3 order-3 w-full justify-center px-4"
+        >
+          <Button 
+            size="sm"
+            className="text-xs bg-accent hover:bg-accent/90 text-white border-0 transition-all duration-300 group px-4 py-2 h-8"
+          >
+            Get in Touch
+            <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform duration-300" />
+          </Button>
+          <Button 
+            size="sm"
+            variant="outline"
+            className="text-xs border-text-secondary text-text-primary hover:bg-text-secondary hover:text-white transition-all duration-300 flex items-center gap-1 px-4 py-2 h-8"
+            onClick={() => {
+              document.getElementById('whoami')?.scrollIntoView({ behavior: 'smooth' })
+            }}
+          >
+            Know More
+            <ChevronDown className="h-3 w-3" />
+          </Button>
         </motion.div>
       </div>
 

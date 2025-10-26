@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   description: "I build cloud, DevOps, and secure infrastructure systems. Specializing in scalable, secure, and efficient cloud solutions.",
   keywords: ["DevOps", "Cloud Engineer", "AWS", "Kubernetes", "Terraform", "Infrastructure", "Security"],
   authors: [{ name: "Shahab Alam" }],
+  icons: {
+    icon: '/icon',
+    apple: '/apple-icon',
+  },
   openGraph: {
     title: "Shahab Alam — Cloud & DevOps Engineer",
     description: "I build cloud, DevOps, and secure infrastructure systems.",

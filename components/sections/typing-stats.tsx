@@ -2,10 +2,56 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useState, useEffect } from "react"
+
+interface TypingStatsData {
+  stats: {
+    tests_completed: number
+    time_typing: string
+    sessions: Array<{
+      wpm: number
+    }>
+  }
+}
 
 export function TypingStats() {
+  const [stats, setStats] = useState<TypingStatsData | null>(null)
+  const [avgSpeed, setAvgSpeed] = useState<number>(0)
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/stats')
+        if (response.ok) {
+          const data = await response.json()
+          setStats(data)
+          
+          // Calculate average WPM from sessions
+          if (data.stats.sessions && data.stats.sessions.length > 0) {
+            const totalWpm = data.stats.sessions.reduce((sum: number, session: { wpm: number }) => sum + session.wpm, 0)
+            const average = Math.round(totalWpm / data.stats.sessions.length)
+            setAvgSpeed(average)
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching typing stats:', error)
+        // Use fallback values
+        setAvgSpeed(101)
+        setStats({
+          stats: {
+            tests_completed: 902,
+            time_typing: "01:40:15",
+            sessions: []
+          }
+        })
+      }
+    }
+
+    fetchStats()
+  }, [])
+
   return (
-    <section className="py-16 bg-[#F6F6F6]">
+    <section className="py-16 bg-[#F5F5F5]">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,17 +71,17 @@ export function TypingStats() {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">1,900</div>
-                <div className="text-base text-text-secondary uppercase tracking-wide">Tests Started</div>
+                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">{avgSpeed}</div>
+                <div className="text-base text-text-secondary uppercase tracking-wide">Average Speed (WPM)</div>
               </div>
               
               <div className="text-center">
-                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">902</div>
+                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">{stats?.stats.tests_completed || 902}</div>
                 <div className="text-base text-text-secondary uppercase tracking-wide">Tests Completed</div>
               </div>
               
               <div className="text-center">
-                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">01:40:15</div>
+                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">{stats?.stats.time_typing || "01:40:15"}</div>
                 <div className="text-base text-text-secondary uppercase tracking-wide">Time Typing</div>
               </div>
             </div>

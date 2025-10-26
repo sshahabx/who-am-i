@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Command } from "cmdk"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { Home, FileText, Star, Mail } from "lucide-react"
+import { Home } from "lucide-react"
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false)
@@ -18,8 +18,16 @@ export function CommandPalette() {
       }
     }
 
+    const handleOpenCommand = () => {
+      setOpen((open) => !open)
+    }
+
     document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
+    document.addEventListener("open-command-palette", handleOpenCommand)
+    return () => {
+      document.removeEventListener("keydown", down)
+      document.removeEventListener("open-command-palette", handleOpenCommand)
+    }
   }, [])
 
   const navigate = (path: string) => {
@@ -58,20 +66,6 @@ export function CommandPalette() {
                 <Home className="h-4 w-4" />
                 <span>Home</span>
               </Command.Item>
-              <Command.Item
-                onSelect={() => navigate("/blog")}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-muted transition-colors"
-              >
-                <FileText className="h-4 w-4" />
-                <span>Blog</span>
-              </Command.Item>
-              <Command.Item
-                onSelect={() => navigate("/reviews")}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-muted transition-colors"
-              >
-                <Star className="h-4 w-4" />
-                <span>Reviews</span>
-              </Command.Item>
             </Command.Group>
 
             <Command.Group heading="Sections" className="mb-2">
@@ -82,17 +76,10 @@ export function CommandPalette() {
                 <span>About</span>
               </Command.Item>
               <Command.Item
-                onSelect={() => scrollToSection("typing-stats")}
+                onSelect={() => scrollToSection("current-work")}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-muted transition-colors"
               >
-                <span>Typing Stats</span>
-              </Command.Item>
-              <Command.Item
-                onSelect={() => scrollToSection("newsletter")}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-muted transition-colors"
-              >
-                <Mail className="h-4 w-4" />
-                <span>Newsletter</span>
+                <span>Currently At</span>
               </Command.Item>
             </Command.Group>
           </Command.List>
