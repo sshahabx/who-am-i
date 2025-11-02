@@ -20,6 +20,9 @@ export function Navbar() {
       setScrolled(window.scrollY > 30)
     }
 
+    // Check initial scroll position
+    handleScroll()
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -48,9 +51,8 @@ export function Navbar() {
     <>
       {/* Floating Navbar */}
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
         style={{ scale }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ease-in-out",
@@ -78,26 +80,26 @@ export function Navbar() {
         >
           <div className="flex items-center justify-between w-full gap-3 md:gap-12">
             {/* Brand/Logo */}
-            <Link href="/" className="flex items-center space-x-2 group flex-shrink-0">
+            <Link href="/" className="flex items-center space-x-2.5 group flex-shrink-0">
               <Terminal 
                 className={cn(
-                  "text-neutral-800 group-hover:text-accent transition-all duration-300",
+                  "text-text-primary group-hover:text-accent transition-all duration-300",
                   "h-4 w-4 md:h-5 md:w-5",
                   !scrolled && "md:h-6 md:w-6"
                 )} 
               />
               <span 
                 className={cn(
-                  "font-display font-semibold text-neutral-800 group-hover:text-accent transition-all duration-300 hidden sm:inline",
+                  "font-display font-semibold text-text-primary group-hover:text-accent transition-all duration-300 hidden sm:inline",
                   "text-sm md:text-base",
-                  !scrolled && "md:text-xl"
+                  !scrolled && "md:text-lg"
                 )}
               >
                 Shahab Alam
               </span>
               <span 
                 className={cn(
-                  "font-display font-semibold text-neutral-800 group-hover:text-accent transition-all duration-300 sm:hidden",
+                  "font-display font-semibold text-text-primary group-hover:text-accent transition-all duration-300 sm:hidden",
                   "text-sm"
                 )}
               >
@@ -140,12 +142,18 @@ export function Navbar() {
               <button 
                 onClick={() => document.dispatchEvent(new Event("open-command-palette"))}
                 className={cn(
-                  "flex items-center space-x-1.5 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/60 rounded-lg transition-all duration-200 ml-2 border border-neutral-200/60",
-                  scrolled ? "px-2.5 py-1.5" : "px-3 py-2"
+                  "flex items-center space-x-2 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/60 rounded-lg transition-all duration-200 ml-2 border border-neutral-200/60 font-medium",
+                  scrolled ? "px-3 py-1.5" : "px-4 py-2.5"
                 )}
               >
-                <Command className="h-3.5 w-3.5" />
-                <span className="font-mono text-xs">⌘K</span>
+                <Command className={cn(
+                  "transition-all duration-200",
+                  scrolled ? "h-4 w-4" : "h-4.5 w-4.5"
+                )} />
+                <span className={cn(
+                  "font-mono transition-all duration-200",
+                  scrolled ? "text-xs" : "text-sm"
+                )}>⌘K</span>
               </button>
             </div>
 

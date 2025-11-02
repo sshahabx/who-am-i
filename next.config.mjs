@@ -6,6 +6,15 @@ const nextConfig = {
   experimental: {
     mdxRs: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+        pathname: '/gh/devicons/devicon@latest/**',
+      },
+    ],
+  },
 }
 
 const withMDX = createMDX({

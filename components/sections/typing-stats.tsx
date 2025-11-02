@@ -51,70 +51,107 @@ export function TypingStats() {
   }, [])
 
   return (
-    <section className="py-16 bg-[#F5F5F5]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="section-padding-sm bg-gradient-to-b from-surface to-background">
+      <div className="container-padding">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center"
         >
           {/* Header */}
-          <div className="mb-8">
-            <h3 className="text-4xl font-bold text-text-primary font-jetbrains-mono">
+          <div className="mb-12">
+            <h3 className="text-display font-bold text-text-primary font-jetbrains-mono mb-4">
               i know how to type
             </h3>
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "100px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="h-1 bg-gradient-to-r from-accent to-accent-light mx-auto rounded-full"
+            />
           </div>
 
           {/* Stats Display - Compact Horizontal Layout */}
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">{avgSpeed}</div>
-                <div className="text-base text-text-secondary uppercase tracking-wide">Average Speed (WPM)</div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="text-6xl md:text-7xl font-bold text-accent mb-3 font-jetbrains-mono">{avgSpeed}</div>
+                <div className="text-sm text-text-secondary uppercase tracking-wider font-medium">Average Speed (WPM)</div>
+              </motion.div>
               
-              <div className="text-center">
-                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">{stats?.stats.tests_completed || 902}</div>
-                <div className="text-base text-text-secondary uppercase tracking-wide">Tests Completed</div>
-              </div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="text-6xl md:text-7xl font-bold text-accent mb-3 font-jetbrains-mono">{stats?.stats.tests_completed || 902}</div>
+                <div className="text-sm text-text-secondary uppercase tracking-wider font-medium">Tests Completed</div>
+              </motion.div>
               
-              <div className="text-center">
-                <div className="text-5xl font-bold text-text-primary mb-2 font-jetbrains-mono">{stats?.stats.time_typing || "01:40:15"}</div>
-                <div className="text-base text-text-secondary uppercase tracking-wide">Time Typing</div>
-              </div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="text-6xl md:text-7xl font-bold text-accent mb-3 font-jetbrains-mono">{stats?.stats.time_typing || "01:40:15"}</div>
+                <div className="text-sm text-text-secondary uppercase tracking-wider font-medium">Time Typing</div>
+              </motion.div>
             </div>
 
             {/* Activity Calendar */}
-            <div className="border-t border-border/20 pt-6">
-              <h4 className="text-xl font-medium text-text-primary mb-4 font-jetbrains-mono">Activity Calendar</h4>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="border-t border-border/30 pt-10 mt-6"
+            >
+              <h4 className="text-xl font-semibold text-text-primary mb-6 font-jetbrains-mono">Activity Calendar</h4>
                 <div className="flex justify-center">
-                  <Image 
-                    src="/calender.png" 
-                    alt="Typing activity calendar" 
-                    width={1000}
-                    height={500}
-                    className="rounded-lg shadow-lg w-full max-w-5xl h-auto"
-                  />
+                  <div className="rounded-2xl overflow-hidden shadow-soft-lg border border-border/50 w-full max-w-5xl">
+                    <Image 
+                      src="/calender.png" 
+                      alt="Typing activity calendar" 
+                      width={1000}
+                      height={500}
+                      className="w-full h-auto"
+                    />
+                  </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Footer Link */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
-              className="mt-6"
+              className="mt-8"
             >
               <a
                 href="https://monkeytype.com/profile/r3dh4tx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-text-secondary hover:text-accent transition-colors text-base font-jetbrains-mono hover:underline"
+                className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-all duration-300 text-base font-jetbrains-mono group"
               >
-                View full Monkeytype profile →
+                <span className="relative">
+                  View full Monkeytype profile
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+                </span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
               </a>
             </motion.div>
           </div>

@@ -26,14 +26,14 @@ export function Footer() {
   ]
 
   return (
-    <footer className="border-t border-neutral-200/60 pt-32 pb-16 mt-24 bg-[#E8E8E8] relative z-10">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="border-t border-border/50 pt-32 pb-16 mt-24 bg-gradient-to-b from-background to-muted relative z-10">
+      <div className="container-padding">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center space-y-8"
+          className="text-center space-y-10"
         >
           {/* Email */}
           <motion.div
@@ -41,12 +41,12 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="flex justify-center items-center space-x-2 text-text-secondary"
+            className="flex justify-center items-center gap-3 text-text-secondary"
           >
-            <Mail className="h-4 w-4" />
+            <Mail className="h-5 w-5" />
             <a
               href="mailto:idevshahab@gmail.com"
-              className="hover:text-accent transition-colors"
+              className="hover:text-accent transition-all duration-300 text-lg font-medium"
             >
               idevshahab@gmail.com
             </a>
@@ -58,7 +58,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex justify-center items-center space-x-6"
+            className="flex justify-center items-center gap-8"
           >
             {socialLinks.map((link) => (
               <motion.a
@@ -70,12 +70,12 @@ export function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: link.delay }}
                 viewport={{ once: true }}
-                whileHover={{ y: -2, scale: 1.1 }}
+                whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 text-text-secondary hover:text-accent transition-colors group"
+                className="flex items-center gap-2.5 text-text-secondary hover:text-accent transition-all duration-300 group"
               >
-                <link.icon className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm font-medium">{link.name}</span>
+                <link.icon className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-base font-medium">{link.name}</span>
               </motion.a>
             ))}
           </motion.div>
@@ -85,7 +85,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-            className="text-text-secondary text-sm"
+            className="text-text-tertiary text-sm font-light pt-4"
           >
             © 2025 Shahab Alam. All rights reserved.
           </motion.p>

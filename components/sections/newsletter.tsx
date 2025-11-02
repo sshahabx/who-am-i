@@ -25,21 +25,24 @@ export function Newsletter() {
       viewport={{ once: true }}
       className="relative z-20 -mb-44"
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="bg-[#1b1b1b] text-[#f2f2f2] shadow-2xl p-6 md:p-8 rounded-md">
-          <div className="text-center space-y-4">
+      <div className="container-padding">
+        <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] text-white shadow-soft-lg p-8 md:p-12 rounded-3xl border border-white/5 relative overflow-hidden">
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none"></div>
+          
+          <div className="relative text-center space-y-6">
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="space-y-3"
+              className="space-y-4"
             >
-              <h3 className="text-3xl md:text-4xl font-bold font-inter text-white">
+              <h3 className="text-display-sm md:text-display font-bold text-white">
                 Stay Updated
               </h3>
-              <p className="text-lg text-[#f2f2f2]/80 font-inter max-w-2xl mx-auto">
+              <p className="text-body-lg text-white/70 font-light max-w-2xl mx-auto leading-relaxed">
                 Get the latest insights on cloud infrastructure, DevOps practices, and engineering thoughts delivered to your inbox.
               </p>
             </motion.div>
@@ -51,7 +54,7 @@ export function Newsletter() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
               onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+              className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto pt-2"
             >
               <div className="flex-1">
                 <input
@@ -60,14 +63,15 @@ export function Newsletter() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#404040] text-[#f2f2f2] placeholder-[#a0a0a0] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 font-inter rounded-md"
+                  className="w-full px-5 py-3.5 bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 rounded-xl backdrop-blur-sm font-light"
                 />
               </div>
               <Button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-inter font-medium transition-all duration-200 flex items-center gap-2 rounded-md"
+                size="lg"
+                className="bg-accent hover:bg-accent-dark text-white font-semibold flex items-center gap-2 shadow-glow"
               >
-                <Mail className="h-4 w-4" />
+                <Mail className="h-5 w-5" />
                 Subscribe
               </Button>
             </motion.form>
@@ -78,7 +82,7 @@ export function Newsletter() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-sm text-[#a0a0a0] font-inter"
+              className="text-sm text-white/50 font-light pt-2"
             >
               Powered by Medium • Unsubscribe anytime
             </motion.p>

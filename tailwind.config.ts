@@ -10,15 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#F8F8F8",
+        background: "#FAFAFA",
         surface: "#FFFFFF",
-        "text-primary": "#222222",
+        "text-primary": "#1A1A1A",
         "text-secondary": "#666666",
+        "text-tertiary": "#999999",
         accent: "#2563EB",
+        "accent-light": "#3B82F6",
+        "accent-dark": "#1E40AF",
         border: "#E5E5E5",
+        "border-light": "#F0F0F0",
         "hover-tint": "#F5F5F5",
         // Keep existing for compatibility
-        foreground: "#222222",
+        foreground: "#1A1A1A",
         muted: "#F5F5F5",
       },
       fontFamily: {
@@ -28,11 +32,12 @@ const config: Config = {
         "jetbrains-mono": ["var(--font-jetbrains-mono)", "monospace"],
       },
       fontSize: {
-        'hero': ['clamp(4rem, 8vw, 8rem)', { lineHeight: '0.85', letterSpacing: '-0.02em' }],
-        'hero-sm': ['clamp(3rem, 6vw, 6rem)', { lineHeight: '0.9', letterSpacing: '-0.01em' }],
-        'display': ['clamp(2.5rem, 4vw, 4rem)', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
-        'body-lg': ['1.125rem', { lineHeight: '1.7' }],
-        'body-xl': ['1.25rem', { lineHeight: '1.6' }],
+        'hero': ['clamp(3.5rem, 8vw, 7rem)', { lineHeight: '0.9', letterSpacing: '-0.03em', fontWeight: '800' }],
+        'hero-sm': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '0.95', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-sm': ['clamp(1.75rem, 3vw, 2.5rem)', { lineHeight: '1.2', letterSpacing: '-0.015em', fontWeight: '600' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.75' }],
+        'body-xl': ['1.3rem', { lineHeight: '1.65' }],
       },
       letterSpacing: {
         'tighter': '-0.05em',
@@ -76,8 +81,17 @@ const config: Config = {
         },
       },
       boxShadow: {
-        "soft": "0 4px 20px rgba(0, 0, 0, 0.1)",
-        "glow": "0 0 20px rgba(37, 99, 235, 0.2)",
+        "soft": "0 2px 16px rgba(0, 0, 0, 0.06)",
+        "soft-lg": "0 4px 24px rgba(0, 0, 0, 0.08)",
+        "glow": "0 0 24px rgba(37, 99, 235, 0.15)",
+        "glow-lg": "0 0 32px rgba(37, 99, 235, 0.2)",
+        "inner-soft": "inset 0 2px 4px rgba(0, 0, 0, 0.04)",
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '26': '6.5rem',
+        '30': '7.5rem',
       },
     },
   },
