@@ -59,14 +59,23 @@ export function TechTicker() {
   const duplicatedStack = [...techStack, ...techStack]
 
   return (
-    <section className="py-20 overflow-hidden bg-gradient-to-b from-background to-surface border-y border-border/40 mb-24">
+    <section className="py-16 overflow-hidden newspaper-bg border-t-2 border-b-2 border-newspaper-border/40 mb-24">
+      <div className="container-padding mb-8">
+        <div className="text-center">
+          <h3 className="font-playfair text-2xl font-bold text-newspaper-accent mb-2">
+            Technology Stack
+          </h3>
+          <div className="newspaper-divider max-w-md mx-auto" />
+        </div>
+      </div>
+
       <div className="relative">
         {/* Gradient fade on edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#f8f7f2] to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#f8f7f2] to-transparent z-10 pointer-events-none"></div>
         
         <motion.div
-          className="flex items-center gap-12 whitespace-nowrap"
+          className="flex items-center gap-8 whitespace-nowrap py-4"
           animate={{
             x: [0, -50 + "%"],
           }}
@@ -82,27 +91,31 @@ export function TechTicker() {
           {duplicatedStack.map((tech, index) => (
             <div
               key={`${tech.name}-${index}`}
-              className="flex items-center gap-3 px-4 py-2 bg-surface/50 border border-border/30 rounded-xl hover:border-accent/40 hover:bg-surface transition-all duration-300 cursor-default group"
+              className="flex items-center gap-3 px-4 py-2 bg-white border border-newspaper-border/40 hover:border-newspaper-accent/60 hover:bg-white transition-all duration-300 cursor-default group"
             >
-              <div className="relative w-8 h-8 flex-shrink-0">
+              <div className="relative w-7 h-7 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all duration-300">
                 <Image
                   src={tech.logo}
                   alt={`${tech.name} logo`}
-                  width={32}
-                  height={32}
+                  width={28}
+                  height={28}
                   className="object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <span className="text-base font-semibold text-text-secondary group-hover:text-accent transition-colors duration-300">
+              <span className="text-sm font-merriweather font-semibold text-newspaper-text/70 group-hover:text-newspaper-accent transition-colors duration-300">
                 {tech.name}
               </span>
             </div>
           ))}
         </motion.div>
       </div>
+
+      {/* Bottom caption */}
+      <div className="container-padding mt-6">
+        <p className="text-center text-xs font-merriweather italic text-newspaper-text/50">
+          Core technologies and frameworks utilized in production environments
+        </p>
+      </div>
     </section>
   )
 }
-
-
-

@@ -1,145 +1,237 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ChevronDown } from "lucide-react"
+import { ArrowRight, MapPin, Calendar, Briefcase } from "lucide-react"
 import Image from "next/image"
 
 export function HeroSection() {
+  const [currentDate, setCurrentDate] = useState("")
+
+  useEffect(() => {
+    const date = new Date()
+    const formattedDate = date.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+    setCurrentDate(formattedDate)
+  }, [])
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-24 pb-16 relative overflow-hidden bg-gradient-to-b from-background via-background to-surface">
-      {/* Subtle gradient shadow effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-surface/50"></div>
+    <section className="min-h-screen flex items-center justify-center px-6 pt-20 newspaper-bg paper-texture relative overflow-hidden">
+      {/* Subtle vintage overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f8f7f2]/50 pointer-events-none" />
       
-      {/* Soft radial light effect */}
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-r from-accent/8 via-accent/4 to-transparent rounded-full blur-3xl"></div>
-      
-      {/* Bottom shadow for separation */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-surface/80 to-transparent"></div>
-      
-      <div className="container-padding flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 relative z-10">
-        {/* Text Content - Left Side */}
-        <div className="text-center lg:text-left space-y-10 flex-1 max-w-2xl order-1 lg:order-1">
-          {/* Main Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h1 className="text-hero-sm md:text-hero font-black tracking-tighter leading-none mb-6">
-              <span className="text-text-primary block">
-                Hi, I'm
-              </span>
-              <span className="text-text-primary block mt-2">
-                Shahab Alam
-              </span>
-            </h1>
-          </motion.div>
-
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-body-xl md:text-2xl text-text-secondary font-light leading-relaxed max-w-xl"
-          >
-            I create, manage, and (occasionally) destroy cloud infrastructure — intentionally.
-          </motion.p>
-
-              {/* CTA Buttons - Desktop only */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="pt-2 hidden lg:flex flex-row gap-4"
-              >
-                <Button 
-                  size="lg" 
-                  className="text-base font-semibold group"
-                  onClick={() => window.open('https://www.linkedin.com/in/sshahabx/', '_blank')}
-                >
-                  Get in Touch
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="text-base font-medium flex items-center gap-2"
-                  onClick={() => {
-                    document.getElementById('whoami')?.scrollIntoView({ behavior: 'smooth' })
-                  }}
-                >
-                  Know More
-                  <ChevronDown className="h-5 w-5" />
-                </Button>
-              </motion.div>
-        </div>
-
-        {/* Image - Right Side */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
-          className="relative lg:max-w-lg order-2 lg:order-2"
+      <div className="container-padding max-w-7xl relative z-10">
+        {/* Masthead */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-12 border-b-2 border-newspaper-border pb-6"
         >
-          {/* Subtle background glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent rounded-3xl blur-2xl transform scale-110"></div>
-          
-          {/* Image container with clean rounded frame */}
-          <motion.div
-            animate={{ 
-              y: [0, -12, 0],
-            }}
-            transition={{ 
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] rounded-3xl overflow-hidden border-2 border-border/50 bg-surface shadow-soft-lg"
-          >
-            <Image
-              src="/unnamed (1).jpg"
-              alt="Shahab Alam"
-              fill
-              className="object-cover object-center"
-              priority
-            />
-            {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/5 to-transparent"></div>
-          </motion.div>
+          <div className="flex items-center justify-between mb-3">
+            <div className="newspaper-meta text-newspaper-text/60">
+              Vol. 01 · Issue 2025
+            </div>
+            <div className="newspaper-meta text-newspaper-text/60">
+              {currentDate}
+            </div>
+          </div>
+          <h1 className="font-old-standard text-5xl md:text-6xl font-bold tracking-wider text-newspaper-accent mb-2">
+            The Tech Tatler
+          </h1>
+          <p className="newspaper-meta text-newspaper-text/50">
+            Engineering Excellence · Cloud Infrastructure · DevOps Innovation
+          </p>
         </motion.div>
 
-        {/* CTA Buttons - Mobile only (below image) */}
+        {/* Main Article Layout */}
+        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start mb-12">
+          {/* Left Column: Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="order-2 lg:order-1"
+          >
+            <div className="relative">
+              {/* Image container */}
+              <div className="relative w-full aspect-[3/4] border-4 border-newspaper-border/20 bg-white overflow-hidden shadow-lg">
+                <Image
+                  src="/unnamed (1).jpg"
+                  alt="Shahab Alam"
+                  fill
+                  className="object-cover grayscale-image"
+                  priority
+                />
+                {/* Paper texture overlay */}
+                <div className="absolute inset-0 paper-texture opacity-20" />
+              </div>
+              
+              {/* Image caption */}
+              <div className="mt-3 pt-3 border-t border-newspaper-border/20">
+                <p className="text-xs font-merriweather italic text-newspaper-text/70 text-center">
+                  Shahab Alam — Principal DevOps Engineer specializing in cloud infrastructure and automation
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Info Box */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-8 border border-newspaper-border/30 p-6 bg-white/50"
+            >
+              <h3 className="font-playfair font-bold text-lg text-newspaper-accent mb-4 pb-2 border-b border-newspaper-border/20">
+                Quick Facts
+              </h3>
+              <div className="space-y-3 font-merriweather text-sm text-newspaper-text/80">
+                <div className="flex items-start gap-2">
+                  <Briefcase className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>DevOps Engineer</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>Remote / Global</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>Available for opportunities</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Main Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="order-1 lg:order-2"
+          >
+            {/* Article tag */}
+            <div className="mb-4">
+              <span className="newspaper-meta text-newspaper-text/60 px-3 py-1 border border-newspaper-border/30 inline-block">
+                SPECIAL FEATURE
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-newspaper-accent mb-6 leading-tight tracking-tight">
+              Building the Infrastructure of Tomorrow, One Pipeline at a Time
+            </h1>
+
+            {/* Subheadline */}
+            <h2 className="font-playfair font-semibold text-xl md:text-2xl text-newspaper-text/90 mb-6 leading-tight">
+              By Shahab Alam
+            </h2>
+
+            {/* Divider */}
+            <div className="newspaper-divider my-6" />
+
+            {/* Lead paragraph */}
+            <div className="font-merriweather text-base md:text-lg text-newspaper-text/80 leading-relaxed space-y-4 text-justify">
+              <p className="first-letter:text-7xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:leading-[0.8] first-letter:mt-1">
+                In the rapidly evolving landscape of cloud infrastructure and DevOps engineering, few practitioners combine 
+                technical excellence with the vision to transform complex systems into elegant, automated solutions. 
+                Shahab Alam stands among this elite group, specializing in building resilient systems that scale, 
+                automate, and deploy with unwavering confidence.
+              </p>
+
+              <p>
+                With deep expertise in cloud infrastructure, CI/CD pipelines, and infrastructure as code, 
+                Alam has consistently demonstrated the ability to turn intricate challenges into streamlined, 
+                production-ready systems. His work spans multi-cloud environments, Kubernetes orchestration, 
+                and comprehensive observability implementations that handle millions of events per second.
+              </p>
+
+              <p>
+                "The beauty of DevOps," Alam reflects, "lies not in the tools we use, but in the problems we solve 
+                and the reliability we deliver." This philosophy permeates his approach to infrastructure automation, 
+                where reducing deployment times by 70% and cutting cloud costs by 40% are not mere statistics, 
+                but tangible improvements to developer experience and business operations.
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="newspaper-divider my-8" />
+
+            {/* CTA Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Button 
+                size="lg" 
+                className="text-base bg-newspaper-accent hover:bg-newspaper-text text-white transition-all duration-300 px-8 py-6 w-full sm:w-auto font-merriweather"
+                onClick={() => window.open('https://www.linkedin.com/in/sshahabx/', '_blank')}
+              >
+                Get in Touch
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+              
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="text-base border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 px-8 py-6 w-full sm:w-auto font-merriweather"
+                onClick={() => {
+                  document.getElementById('whoami')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                Know More
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </motion.div>
+
+            {/* Continue reading indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="mt-8 pt-6 border-t border-newspaper-border/20"
+            >
+              <button
+                onClick={() => {
+                  document.getElementById('whoami')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  })
+                }}
+                className="text-newspaper-text/60 text-sm font-merriweather italic hover:text-newspaper-accent transition-colors duration-300 cursor-pointer group underline-slide"
+              >
+                Continue reading below ↓
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Bottom metadata bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="flex lg:hidden flex-row gap-3 order-3 w-full justify-center"
+          transition={{ delay: 0.9, duration: 0.8 }}
+          className="border-t-2 border-b border-newspaper-border pt-4 pb-4"
         >
-          <Button 
-            size="default"
-            className="text-sm font-semibold group flex-1 max-w-[180px]"
-            onClick={() => window.open('https://www.linkedin.com/in/sshahabx/', '_blank')}
-          >
-            Get in Touch
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-          </Button>
-          <Button 
-            size="default"
-            variant="outline"
-            className="text-sm font-medium flex items-center gap-2 flex-1 max-w-[180px]"
-            onClick={() => {
-              document.getElementById('whoami')?.scrollIntoView({ behavior: 'smooth' })
-            }}
-          >
-            Know More
-            <ChevronDown className="h-4 w-4" />
-          </Button>
+          <div className="flex flex-wrap justify-between items-center gap-4 newspaper-meta text-newspaper-text/50">
+            <div className="flex items-center gap-6">
+              <span>Published: {currentDate}</span>
+              <span className="hidden md:inline">•</span>
+              <span className="hidden md:inline">Infrastructure & DevOps</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <span>Available for Opportunities</span>
+              <span>•</span>
+              <span>Remote</span>
+            </div>
+          </div>
         </motion.div>
       </div>
-
     </section>
   )
 }
-
-

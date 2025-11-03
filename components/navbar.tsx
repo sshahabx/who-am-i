@@ -4,15 +4,16 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Terminal, Command, Search, Home, User, Briefcase } from "lucide-react"
+import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
+  const [currentDate, setCurrentDate] = useState("")
   const { scrollY } = useScroll()
 
-  // Transform scroll position to scale value (subtle scale effect)
+  // Transform scroll position for subtle effects
   const scale = useTransform(scrollY, [0, 100], [1, 0.98])
 
   useEffect(() => {
@@ -20,17 +21,25 @@ export function Navbar() {
       setScrolled(window.scrollY > 30)
     }
 
-    // Check initial scroll position
-    handleScroll()
+    // Set current date
+    const date = new Date()
+    const formattedDate = date.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric' 
+    })
+    setCurrentDate(formattedDate)
 
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const links = [
-    { href: "/", label: "Home", icon: Home, disabled: false },
-    { href: "/#whoami", label: "About", icon: User, disabled: false },
-    { href: "/#current-work", label: "Work", icon: Briefcase, disabled: false },
+    { href: "/", label: "HOME", disabled: false },
+    { href: "/#whoami", label: "ABOUT", disabled: false },
+    { href: "/#current-work", label: "WORK", disabled: false },
+    { href: "/blog", label: "ARTICLES", disabled: false },
   ]
 
   const scrollToSection = (href: string, disabled: boolean) => {
@@ -49,148 +58,115 @@ export function Navbar() {
 
   return (
     <>
-      {/* Floating Navbar */}
+      {/* Newspaper Masthead Navbar */}
       <motion.nav
         initial={false}
         animate={{ y: 0, opacity: 1 }}
         style={{ scale }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ease-in-out",
-          scrolled ? "mt-2" : "mt-4"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out newspaper-bg",
+          scrolled ? "shadow-md border-b border-newspaper-border/30" : "shadow-sm"
         )}
       >
-        <motion.div
-          animate={{
-            width: scrolled ? "auto" : "auto",
-          }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className={cn(
-            "transition-all duration-500 ease-in-out border border-neutral-200/60 shadow-lg w-full mx-3 md:mx-4",
-            // Desktop styles
-            scrolled
-              ? "md:max-w-7xl md:px-4 md:py-2"
-              : "md:max-w-[1600px] md:px-8 md:py-5",
-            // Mobile styles - consistently small
-            "max-w-full px-3 py-2 rounded-xl",
-            // Shared styles
-            scrolled
-              ? "backdrop-blur-md bg-white/95 shadow-black/10 md:rounded-xl"
-              : "backdrop-blur-sm bg-white/70 shadow-black/5 md:rounded-2xl"
-          )}
-        >
-          <div className="flex items-center justify-between w-full gap-3 md:gap-12">
-            {/* Brand/Logo */}
-            <Link href="/" className="flex items-center space-x-2.5 group flex-shrink-0">
-              <Terminal 
-                className={cn(
-                  "text-text-primary group-hover:text-accent transition-all duration-300",
-                  "h-4 w-4 md:h-5 md:w-5",
-                  !scrolled && "md:h-6 md:w-6"
-                )} 
-              />
-              <span 
-                className={cn(
-                  "font-display font-semibold text-text-primary group-hover:text-accent transition-all duration-300 hidden sm:inline",
-                  "text-sm md:text-base",
-                  !scrolled && "md:text-lg"
-                )}
-              >
-                Shahab Alam
-              </span>
-              <span 
-                className={cn(
-                  "font-display font-semibold text-text-primary group-hover:text-accent transition-all duration-300 sm:hidden",
-                  "text-sm"
-                )}
-              >
-                SA
-              </span>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1 flex-grow justify-end">
-              {links.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href, link.disabled)}
-                  disabled={link.disabled}
-                  className={cn(
-                    "relative text-sm font-medium transition-all duration-200 rounded-lg group",
-                    scrolled ? "px-3 py-1.5" : "px-4 py-2",
-                    link.disabled
-                      ? "text-neutral-400 cursor-not-allowed"
-                      : pathname === link.href || (link.href === "/" && pathname === "/")
-                      ? "text-neutral-900"
-                      : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/60"
-                  )}
-                >
-                  {link.label}
-                  {pathname === link.href && !link.disabled && (
-                    <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {!link.disabled && (
-                    <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  )}
-                </button>
-              ))}
-              
-              {/* Desktop: Command Button */}
+        <div className="container-padding">
+          <motion.div
+            animate={{
+              paddingTop: scrolled ? "0.75rem" : "1.25rem",
+              paddingBottom: scrolled ? "0.75rem" : "1.25rem",
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={cn(
+              "transition-all duration-500 ease-in-out",
+              scrolled ? "border-b-0" : "border-b border-newspaper-border/20"
+            )}
+          >
+            {/* Top Row: Date and Search */}
+            <div className="flex items-center justify-between mb-3 text-xs newspaper-meta text-newspaper-text/50">
+              <div className="flex items-center gap-4">
+                <span>Vol. 01 · Issue 2025</span>
+                <span className="hidden sm:inline">•</span>
+                <span className="hidden sm:inline">{currentDate}</span>
+              </div>
               <button 
                 onClick={() => document.dispatchEvent(new Event("open-command-palette"))}
-                className={cn(
-                  "flex items-center space-x-2 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/60 rounded-lg transition-all duration-200 ml-2 border border-neutral-200/60 font-medium",
-                  scrolled ? "px-3 py-1.5" : "px-4 py-2.5"
-                )}
-              >
-                <Command className={cn(
-                  "transition-all duration-200",
-                  scrolled ? "h-4 w-4" : "h-4.5 w-4.5"
-                )} />
-                <span className={cn(
-                  "font-mono transition-all duration-200",
-                  scrolled ? "text-xs" : "text-sm"
-                )}>⌘K</span>
-              </button>
-            </div>
-
-            {/* Mobile: Icon Navigation */}
-            <div className="flex md:hidden items-center gap-1">
-              {links.map((link) => {
-                const IconComponent = link.icon
-                return (
-                  <button
-                    key={link.href}
-                    onClick={() => scrollToSection(link.href, link.disabled)}
-                    disabled={link.disabled}
-                    className={cn(
-                      "p-2 transition-all duration-200 rounded-lg",
-                      link.disabled
-                        ? "text-neutral-400 cursor-not-allowed"
-                        : pathname === link.href || (link.href === "/" && pathname === "/")
-                        ? "text-accent bg-accent/10"
-                        : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/60"
-                    )}
-                    aria-label={link.label}
-                  >
-                    <IconComponent className="h-4 w-4" />
-                  </button>
-                )
-              })}
-              
-              <button 
-                onClick={() => document.dispatchEvent(new Event("open-command-palette"))}
-                className="p-2 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/60 rounded-lg transition-all duration-200 ml-1"
+                className="flex items-center gap-2 text-newspaper-text/60 hover:text-newspaper-accent transition-colors duration-300 px-2 py-1"
                 aria-label="Search"
               >
-                <Search className="h-4 w-4" />
+                <Search className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline">Search</span>
               </button>
             </div>
-          </div>
-        </motion.div>
+
+            {/* Main Masthead */}
+            <div className="text-center space-y-3">
+              <Link href="/" className="group">
+                <motion.h1 
+                  animate={{
+                    fontSize: scrolled ? "1.75rem" : "2.25rem",
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="font-old-standard font-bold tracking-wider text-newspaper-accent transition-colors duration-300 group-hover:text-newspaper-text"
+                >
+                  The Tech Tatler
+                </motion.h1>
+              </Link>
+
+              {/* Navigation Links */}
+              <motion.div 
+                animate={{
+                  marginTop: scrolled ? "0.25rem" : "0.5rem",
+                }}
+                className="flex items-center justify-center gap-1"
+              >
+                {links.map((link, index) => (
+                  <div key={link.href} className="flex items-center">
+                    {index > 0 && (
+                      <span className="text-newspaper-border/40 mx-2 select-none">|</span>
+                    )}
+                    {link.href.startsWith("/#") ? (
+                      <button
+                        onClick={() => scrollToSection(link.href, link.disabled)}
+                        disabled={link.disabled}
+                        className={cn(
+                          "relative newspaper-meta text-xs transition-all duration-200 px-2 py-1",
+                          link.disabled
+                            ? "text-newspaper-text/30 cursor-not-allowed"
+                            : "text-newspaper-text/60 hover:text-newspaper-accent underline-slide"
+                        )}
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "relative newspaper-meta text-xs transition-all duration-200 px-2 py-1",
+                          pathname === link.href
+                            ? "text-newspaper-accent font-semibold"
+                            : "text-newspaper-text/60 hover:text-newspaper-accent underline-slide"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Subtle tagline (hidden when scrolled) */}
+            {!scrolled && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="text-center text-xs text-newspaper-text/40 mt-3 font-merriweather italic"
+              >
+                Engineering Excellence in Cloud & Infrastructure
+              </motion.p>
+            )}
+          </motion.div>
+        </div>
       </motion.nav>
     </>
   )

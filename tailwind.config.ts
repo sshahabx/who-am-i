@@ -24,12 +24,21 @@ const config: Config = {
         // Keep existing for compatibility
         foreground: "#1A1A1A",
         muted: "#F5F5F5",
+        // Newspaper colors
+        "newspaper-bg": "#f8f7f2",
+        "newspaper-text": "#2a2a2a",
+        "newspaper-border": "#4a4a4a",
+        "newspaper-accent": "#1a1a1a",
       },
       fontFamily: {
         sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
         mono: ["var(--font-ibm-plex-mono)", "monospace"],
         display: ["var(--font-outfit)", "system-ui", "sans-serif"],
         "jetbrains-mono": ["var(--font-jetbrains-mono)", "monospace"],
+        serif: ["Playfair Display", "Merriweather", "Georgia", "serif"],
+        "playfair": ["Playfair Display", "serif"],
+        "merriweather": ["Merriweather", "Georgia", "serif"],
+        "old-standard": ["Old Standard TT", "serif"],
       },
       fontSize: {
         'hero': ['clamp(3.5rem, 8vw, 7rem)', { lineHeight: '0.9', letterSpacing: '-0.03em', fontWeight: '800' }],

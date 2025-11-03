@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700;800;900&family=Merriweather:wght@300;400;700;900&family=Old+Standard+TT:wght@400;700&display=swap');
 
 /* Ensure Outfit is the default font */
 body {
@@ -121,6 +121,91 @@ body {
   /* Smooth transitions */
   .transition-smooth {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Newspaper styles */
+  .newspaper-bg {
+    background-color: #f8f7f2;
+    position: relative;
+  }
+
+  .newspaper-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .paper-texture {
+    position: relative;
+  }
+
+  .paper-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .newspaper-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent);
+    opacity: 0.3;
+  }
+
+  .newspaper-divider-vertical {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent);
+    opacity: 0.3;
+  }
+
+  .grayscale-image {
+    filter: grayscale(100%) contrast(1.1);
+  }
+
+  .serif-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+  }
+
+  .serif-body {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+  }
+
+  .newspaper-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .underline-slide {
+    position: relative;
+    display: inline-block;
+  }
+
+  .underline-slide::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .underline-slide:hover::after {
+    width: 100%;
   }
 }
 
