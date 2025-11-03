@@ -21,31 +21,45 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-20 newspaper-bg paper-texture relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-6 pt-32 newspaper-bg paper-texture relative overflow-hidden">
       {/* Subtle vintage overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f8f7f2]/50 pointer-events-none" />
       
       <div className="container-padding max-w-7xl relative z-10">
-        {/* Masthead */}
+        {/* Refined Masthead */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-12 border-b-2 border-newspaper-border pb-6"
+          className="text-center mb-16 pb-8 border-b border-newspaper-border/40"
         >
-          <div className="flex items-center justify-between mb-3">
-            <div className="newspaper-meta text-newspaper-text/60">
-              Vol. 01 · Issue 2025
-            </div>
-            <div className="newspaper-meta text-newspaper-text/60">
-              {currentDate}
-            </div>
+          {/* Top Meta Line */}
+          <div className="newspaper-meta text-newspaper-text/50 text-xs md:text-sm mb-6 tracking-wider mt-4">
+            Vol. 01 · Issue 2025  <span className="mx-2">•</span>  {currentDate}
           </div>
-          <h1 className="font-old-standard text-5xl md:text-6xl font-bold tracking-wider text-newspaper-accent mb-2">
-            The Tech Tatler
-          </h1>
-          <p className="newspaper-meta text-newspaper-text/50">
-            Engineering Excellence · Cloud Infrastructure · DevOps Innovation
+          
+          {/* Newspaper Title */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h1 className="font-old-standard text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.15em] text-newspaper-accent mb-4 uppercase">
+              The Tech Tatler
+            </h1>
+            
+            {/* Animated underline */}
+            <motion.div
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "200px", opacity: 0.3 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="h-[1px] bg-newspaper-accent mx-auto mb-5"
+            />
+          </motion.div>
+          
+          {/* Tagline */}
+          <p className="font-merriweather text-sm md:text-base text-newspaper-text/70 italic tracking-wide">
+            Engineering Excellence in Cloud & Infrastructure
           </p>
         </motion.div>
 
@@ -55,7 +69,7 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="order-2 lg:order-1"
           >
             <div className="relative">
@@ -84,7 +98,7 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
               className="mt-8 border border-newspaper-border/30 p-6 bg-white/50"
             >
               <h3 className="font-playfair font-bold text-lg text-newspaper-accent mb-4 pb-2 border-b border-newspaper-border/20">
@@ -111,7 +125,7 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="order-1 lg:order-2"
           >
             {/* Article tag */}
@@ -165,7 +179,7 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
               <Button 
@@ -182,7 +196,9 @@ export function HeroSection() {
                 variant="outline"
                 className="text-base border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 px-8 py-6 w-full sm:w-auto font-merriweather"
                 onClick={() => {
-                  document.getElementById('whoami')?.scrollIntoView({ behavior: 'smooth' })
+                  document.getElementById('whoami')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  })
                 }}
               >
                 Know More
@@ -194,7 +210,7 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
               className="mt-8 pt-6 border-t border-newspaper-border/20"
             >
               <button
@@ -215,14 +231,14 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
+          transition={{ delay: 1, duration: 0.8 }}
           className="border-t-2 border-b border-newspaper-border pt-4 pb-4"
         >
           <div className="flex flex-wrap justify-between items-center gap-4 newspaper-meta text-newspaper-text/50">
             <div className="flex items-center gap-6">
-              <span>Published: {currentDate}</span>
+              <span>Infrastructure & DevOps</span>
               <span className="hidden md:inline">•</span>
-              <span className="hidden md:inline">Infrastructure & DevOps</span>
+              <span className="hidden md:inline">Feature Article</span>
             </div>
             <div className="flex items-center gap-6">
               <span>Available for Opportunities</span>

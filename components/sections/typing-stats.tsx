@@ -302,7 +302,7 @@ export function TypingStats() {
             {/* More Link */}
             <div className="mt-6 pt-4 border-t border-newspaper-border/20">
               <a
-                href="https://www.reddit.com/r/ProgrammerHumor/"
+                href="https://github.com/sshahabx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-newspaper-text/60 hover:text-newspaper-accent transition-all duration-300 text-xs font-merriweather group underline-slide"
