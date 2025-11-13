@@ -101,6 +101,17 @@ export function CommandPalette() {
               </Command.Item>
               
               <Command.Item
+                onSelect={() => scrollToSection("projects")}
+                className="flex items-center gap-3 rounded px-3 py-3 cursor-pointer hover:bg-white/60 transition-colors border-l-2 border-transparent hover:border-newspaper-accent data-[selected=true]:bg-white/60 data-[selected=true]:border-newspaper-accent"
+              >
+                <Briefcase className="h-4 w-4 text-newspaper-accent" />
+                <div className="flex flex-col">
+                  <span className="font-merriweather text-sm text-newspaper-text font-medium">Projects</span>
+                  <span className="text-xs text-newspaper-text/60 font-merriweather italic">Personal builds</span>
+                </div>
+              </Command.Item>
+              
+              <Command.Item
                 onSelect={() => scrollToSection("current-work")}
                 className="flex items-center gap-3 rounded px-3 py-3 cursor-pointer hover:bg-white/60 transition-colors border-l-2 border-transparent hover:border-newspaper-accent data-[selected=true]:bg-white/60 data-[selected=true]:border-newspaper-accent"
               >

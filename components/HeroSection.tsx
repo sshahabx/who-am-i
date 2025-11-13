@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, MapPin, Calendar, Briefcase } from "lucide-react"
+import { ArrowRight, ArrowDown, MapPin, Calendar, Briefcase } from "lucide-react"
 import Image from "next/image"
 
 export function HeroSection() {
@@ -137,7 +137,7 @@ export function HeroSection() {
 
             {/* Main Headline */}
             <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-newspaper-accent mb-6 leading-tight tracking-tight">
-              Building the Infrastructure of Tomorrow, One Pipeline at a Time
+              Engineering Reliable Systems for an Unreliable World
             </h1>
 
             {/* Subheadline */}
@@ -151,24 +151,17 @@ export function HeroSection() {
             {/* Lead paragraph */}
             <div className="font-merriweather text-base md:text-lg text-newspaper-text/80 leading-relaxed space-y-4 text-justify">
               <p className="first-letter:text-7xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:leading-[0.8] first-letter:mt-1">
-                In the rapidly evolving landscape of cloud infrastructure and DevOps engineering, few practitioners combine 
-                technical excellence with the vision to transform complex systems into elegant, automated solutions. 
-                Shahab Alam stands among this elite group, specializing in building resilient systems that scale, 
-                automate, and deploy with unwavering confidence.
+                In the evolving world of cloud infrastructure and DevOps, Shahab Alam focuses on building systems 
+                that are reliable, efficient, and easy to maintain. With about a year of experience in cloud and 
+                DevOps engineering, he's developed a growing interest in how automation, observability, and scalable 
+                design come together to improve how software is deployed and operated.
               </p>
 
               <p>
-                With deep expertise in cloud infrastructure, CI/CD pipelines, and infrastructure as code, 
-                Alam has consistently demonstrated the ability to turn intricate challenges into streamlined, 
-                production-ready systems. His work spans multi-cloud environments, Kubernetes orchestration, 
-                and comprehensive observability implementations that handle millions of events per second.
-              </p>
-
-              <p>
-                "The beauty of DevOps," Alam reflects, "lies not in the tools we use, but in the problems we solve 
-                and the reliability we deliver." This philosophy permeates his approach to infrastructure automation, 
-                where reducing deployment times by 70% and cutting cloud costs by 40% are not mere statistics, 
-                but tangible improvements to developer experience and business operations.
+                He's worked with tools across cloud platforms, CI/CD pipelines, and infrastructure as code, with a 
+                focus on learning what makes systems not just functional, but resilient and simple to manage. For 
+                Shahab, DevOps is less about chasing new tools and more about building environments where teams can 
+                move faster and with confidence.
               </p>
             </div>
 
@@ -194,7 +187,7 @@ export function HeroSection() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="text-base border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 px-8 py-6 w-full sm:w-auto font-merriweather"
+                className="text-base border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 px-8 py-6 w-full sm:w-auto font-merriweather group"
                 onClick={() => {
                   document.getElementById('whoami')?.scrollIntoView({ 
                     behavior: 'smooth' 
@@ -202,7 +195,7 @@ export function HeroSection() {
                 }}
               >
                 Know More
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform duration-300" />
               </Button>
             </motion.div>
 

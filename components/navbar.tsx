@@ -28,8 +28,7 @@ export function Navbar() {
   const links = [
     { href: "/", label: "HOME", disabled: false },
     { href: "/#whoami", label: "ABOUT", disabled: false },
-    { href: "/#current-work", label: "WORK", disabled: false },
-    { href: "/blog", label: "ARTICLES", disabled: true },
+    { href: "/#projects", label: "PROJECTS", disabled: false },
   ]
 
   const scrollToSection = (href: string, disabled: boolean) => {
