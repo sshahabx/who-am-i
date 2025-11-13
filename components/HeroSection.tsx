@@ -89,7 +89,7 @@ export function HeroSection() {
               {/* Image caption */}
               <div className="mt-3 pt-3 border-t border-newspaper-border/20">
                 <p className="text-xs font-merriweather italic text-newspaper-text/70 text-center">
-                  Shahab Alam — Principal DevOps Engineer specializing in cloud infrastructure and automation
+                  Shahab Alam — DevOps Engineer specializing in cloud infrastructure and automation
                 </p>
               </div>
             </div>
