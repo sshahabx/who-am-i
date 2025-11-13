@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { ExternalLink, ArrowRight } from "lucide-react"
 import Image from "next/image"
+import { ReadMore } from "@/components/ui/read-more"
 
 const projects = [
   {
@@ -31,8 +32,8 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="section-padding newspaper-bg paper-texture border-t-2 border-b border-newspaper-border/30">
-      <div className="container-padding">
+    <section id="projects" className="section-padding newspaper-bg paper-texture border-t-2 border-b border-newspaper-border/30 pb-20 md:pb-12">
+      <div className="container-padding px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <motion.div
@@ -40,21 +41,21 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
             {/* Edition Mark */}
-            <div className="newspaper-meta text-newspaper-text/50 text-xs mb-4">
+            <div className="newspaper-meta text-newspaper-text/50 text-[0.65rem] mb-3 md:mb-4">
               Vol. 01 Feature
             </div>
 
             <div className="inline-block">
-              <div className="newspaper-divider mb-4" />
+              <div className="newspaper-divider mb-3 md:mb-4" />
               
-              <h2 className="font-playfair text-4xl md:text-5xl font-bold text-newspaper-accent tracking-tight mb-2">
+              <h2 className="font-playfair text-2xl md:text-4xl lg:text-5xl font-bold text-newspaper-accent tracking-tight mb-2">
                 Personal Projects
               </h2>
               
-              <p className="font-merriweather text-base text-newspaper-text/70 italic mb-4">
+              <p className="font-merriweather text-sm md:text-base text-newspaper-text/70 italic mb-3 md:mb-4">
                 Building tools that simplify work and support sustainability.
               </p>
               
@@ -63,7 +64,7 @@ export function Projects() {
           </motion.div>
 
           {/* Projects with Images */}
-          <div className="space-y-20">
+          <div className="space-y-12 md:space-y-16 lg:space-y-20">
             {projects.map((project, index) => (
               <motion.article
                 key={project.id}
@@ -71,63 +72,17 @@ export function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="border-t-2 border-newspaper-border/30 pt-12"
+                className="border-t-2 border-newspaper-border/30 pt-8 md:pt-12"
               >
                 {/* Split Layout: Text + Image */}
-                <div className="grid lg:grid-cols-[55%_45%] gap-8 lg:gap-12 items-start">
-                  {/* Left: Text Content */}
-                  <div className="space-y-6 order-2 lg:order-1">
-                    {/* Project Header */}
-                    <div>
-                      <h3 className="font-playfair text-4xl md:text-5xl font-bold text-newspaper-accent mb-3 leading-tight">
-                        {project.name}
-                      </h3>
-                      
-                      <p className="font-playfair text-xl md:text-2xl text-newspaper-text/80 italic mb-4">
-                        {project.tagline}
-                      </p>
-                      
-                      <div className="newspaper-divider" />
-                    </div>
-
-                    {/* Project Description */}
-                    <div>
-                      <p className="font-merriweather text-sm md:text-base text-newspaper-text/80 leading-relaxed text-justify">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    {/* Additional Note (if exists) */}
-                    {project.note && (
-                      <div className="py-3 px-4 bg-white/50 border-l-2 border-newspaper-accent">
-                        <p className="text-xs font-merriweather italic text-newspaper-text/70">
-                          {project.note}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* CTA Link */}
-                    <div className="pt-4 border-t border-newspaper-border/20">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-newspaper-accent hover:text-newspaper-text transition-all duration-300 group font-merriweather font-semibold text-sm"
-                      >
-                        <span className="underline-slide">Visit Project</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        <ExternalLink className="w-3 h-3 opacity-60" />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Right: Image Container */}
+                <div className="flex flex-col lg:grid lg:grid-cols-[55%_45%] gap-6 md:gap-8 lg:gap-12 items-start">
+                  {/* Image First on Mobile */}
                   <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="order-1 lg:order-2"
+                    className="order-1 w-full"
                   >
                     {/* Framed Screenshot */}
                     <div className="relative">
@@ -144,13 +99,59 @@ export function Projects() {
                       </div>
                       
                       {/* Image Caption */}
-                      <div className="mt-3 pt-2 border-t border-newspaper-border/20">
-                        <p className="text-xs font-merriweather italic text-newspaper-text/60 text-center">
+                      <div className="mt-2 md:mt-3 pt-2 border-t border-newspaper-border/20">
+                        <p className="text-[0.65rem] md:text-xs font-merriweather italic text-newspaper-text/60 text-center">
                           {project.imageCaption}
                         </p>
                       </div>
                     </div>
                   </motion.div>
+
+                  {/* Text Content */}
+                  <div className="order-2 space-y-4 md:space-y-6 w-full">
+                    {/* Project Header */}
+                    <div>
+                      <h3 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-newspaper-accent mb-2 md:mb-3 leading-tight">
+                        {project.name}
+                      </h3>
+                      
+                      <p className="font-playfair text-lg md:text-xl lg:text-2xl text-newspaper-text/80 italic mb-3 md:mb-4">
+                        {project.tagline}
+                      </p>
+                      
+                      <div className="newspaper-divider" />
+                    </div>
+
+                    {/* Project Description with ReadMore */}
+                    <ReadMore>
+                      <p className="font-merriweather text-sm md:text-base text-newspaper-text/80 leading-relaxed text-left md:text-justify">
+                        {project.description}
+                      </p>
+                    </ReadMore>
+
+                    {/* Additional Note (if exists) */}
+                    {project.note && (
+                      <div className="py-2 md:py-3 px-3 md:px-4 bg-white/50 border-l-2 border-newspaper-accent">
+                        <p className="text-[0.65rem] md:text-xs font-merriweather italic text-newspaper-text/70">
+                          {project.note}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* CTA Link */}
+                    <div className="pt-3 md:pt-4 border-t border-newspaper-border/20">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-newspaper-accent hover:text-newspaper-text transition-all duration-300 group font-merriweather font-semibold text-sm"
+                      >
+                        <span className="underline-slide">Visit Project</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        <ExternalLink className="w-3 h-3 opacity-60" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </motion.article>
             ))}
@@ -162,9 +163,9 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mt-16 pt-8 border-t-2 border-newspaper-border/30 text-center"
+            className="mt-12 md:mt-16 pt-6 md:pt-8 border-t-2 border-newspaper-border/30 text-center"
           >
-            <p className="text-xs newspaper-meta text-newspaper-text/50">
+            <p className="text-[0.65rem] md:text-xs newspaper-meta text-newspaper-text/50">
               Featured Projects
             </p>
           </motion.div>

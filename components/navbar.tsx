@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Search } from "lucide-react"
+import { Search, Home, User, Briefcase } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -26,9 +26,9 @@ export function Navbar() {
   }, [])
 
   const links = [
-    { href: "/", label: "HOME", disabled: false },
-    { href: "/#whoami", label: "ABOUT", disabled: false },
-    { href: "/#projects", label: "PROJECTS", disabled: false },
+    { href: "/", label: "HOME", icon: Home, disabled: false },
+    { href: "/#whoami", label: "ABOUT", icon: User, disabled: false },
+    { href: "/#projects", label: "PROJECTS", icon: Briefcase, disabled: false },
   ]
 
   const scrollToSection = (href: string, disabled: boolean) => {
@@ -47,13 +47,13 @@ export function Navbar() {
 
   return (
     <>
-      {/* Floating Navbar */}
+      {/* Desktop Navbar */}
       <motion.nav
         initial={false}
         animate={{ y: 0, opacity: 1 }}
         style={{ scale }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ease-in-out",
+          "fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center transition-all duration-500 ease-in-out",
           scrolled ? "mt-2" : "mt-4"
         )}
       >
@@ -134,6 +134,53 @@ export function Navbar() {
             </button>
           </div>
         </motion.div>
+      </motion.nav>
+
+      {/* Mobile Bottom Navbar */}
+      <motion.nav
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="fixed bottom-4 left-4 right-4 z-50 md:hidden"
+      >
+        <div className="bg-[#fcfbf8]/95 backdrop-blur-md border-2 border-newspaper-border/40 rounded-2xl shadow-xl px-2 py-3">
+          <div className="flex items-center justify-around">
+            {links.map((link) => {
+              const IconComponent = link.icon
+              const isActive = link.href === "/" 
+                ? pathname === "/" 
+                : pathname.includes(link.href.replace("/#", ""))
+              
+              return (
+                <button
+                  key={link.href}
+                  onClick={() => link.href === "/" ? window.scrollTo({ top: 0, behavior: "smooth" }) : scrollToSection(link.href, link.disabled)}
+                  disabled={link.disabled}
+                  className={cn(
+                    "flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-all duration-200 min-w-[70px]",
+                    isActive
+                      ? "bg-newspaper-accent/10 text-newspaper-accent"
+                      : "text-newspaper-text/60 hover:text-newspaper-accent hover:bg-newspaper-accent/5",
+                    link.disabled && "opacity-40 cursor-not-allowed"
+                  )}
+                >
+                  <IconComponent className="h-5 w-5" />
+                  <span className="text-[0.65rem] font-medium newspaper-meta">
+                    {link.label}
+                  </span>
+                </button>
+              )
+            })}
+            
+            <button 
+              onClick={() => document.dispatchEvent(new Event("open-command-palette"))}
+              className="flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-newspaper-text/60 hover:text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-200 min-w-[70px]"
+            >
+              <Search className="h-5 w-5" />
+              <span className="text-[0.65rem] font-medium newspaper-meta">SEARCH</span>
+            </button>
+          </div>
+        </div>
       </motion.nav>
     </>
   )

@@ -97,15 +97,22 @@ body {
   }
 
   .section-padding {
-    @apply py-24 md:py-32 px-6;
+    @apply py-12 md:py-24 lg:py-32 px-4 md:px-6;
   }
 
   .section-padding-sm {
-    @apply py-16 md:py-20 px-6;
+    @apply py-8 md:py-16 lg:py-20 px-4 md:px-6;
   }
 
   .container-padding {
-    @apply max-w-7xl mx-auto px-6;
+    @apply max-w-7xl mx-auto px-4 md:px-6;
+  }
+
+  /* Mobile safe area for bottom navbar */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
   }
 
   /* FadeIn Animation */
@@ -206,6 +213,24 @@ body {
 
   .underline-slide:hover::after {
     width: 100%;
+  }
+
+  /* Line clamp utilities for mobile text truncation */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Smooth shadow for images */
+  .shadow-soft {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Additional newspaper background variation */
+  .newspaper-bg-light {
+    background-color: #f3f2ef;
   }
 }
 

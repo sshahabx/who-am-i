@@ -21,11 +21,11 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-32 newspaper-bg paper-texture relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-6 pt-24 md:pt-32 pb-24 md:pb-12 newspaper-bg paper-texture relative overflow-hidden">
       {/* Subtle vintage overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f8f7f2]/50 pointer-events-none" />
       
-      <div className="container-padding max-w-7xl relative z-10">
+      <div className="container-padding max-w-7xl relative z-10 w-full">
         {/* Refined Masthead */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -34,8 +34,10 @@ export function HeroSection() {
           className="text-center mb-16 pb-8 border-b border-newspaper-border/40"
         >
           {/* Top Meta Line */}
-          <div className="newspaper-meta text-newspaper-text/50 text-xs md:text-sm mb-6 tracking-wider mt-4">
-            Vol. 01 · Issue 2025  <span className="mx-2">•</span>  {currentDate}
+          <div className="newspaper-meta text-newspaper-text/50 text-[0.65rem] md:text-sm mb-4 md:mb-6 tracking-wider mt-2 md:mt-4">
+            <span className="block sm:inline">Vol. 01 · Issue 2025</span>
+            <span className="hidden sm:inline mx-2">•</span>
+            <span className="block sm:inline text-[0.6rem] md:text-xs mt-1 sm:mt-0">{currentDate}</span>
           </div>
           
           {/* Newspaper Title */}
@@ -44,7 +46,7 @@ export function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="font-old-standard text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.15em] text-newspaper-accent mb-4 uppercase">
+            <h1 className="font-old-standard text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-[0.1em] md:tracking-[0.15em] text-newspaper-accent mb-3 md:mb-4 uppercase">
               The Tech Tatler
             </h1>
             
@@ -64,13 +66,13 @@ export function HeroSection() {
         </motion.div>
 
         {/* Main Article Layout */}
-        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start mb-12">
+        <div className="flex flex-col lg:grid lg:grid-cols-[350px_1fr] gap-8 md:gap-12 lg:gap-16 items-start mb-8 md:mb-12">
           {/* Left Column: Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="order-2 lg:order-1"
+            className="order-1 lg:order-1 w-full max-w-sm mx-auto lg:max-w-none lg:mx-0"
           >
             <div className="relative">
               {/* Image container */}
@@ -99,7 +101,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="mt-8 border border-newspaper-border/30 p-6 bg-white/50"
+              className="mt-6 md:mt-8 border border-newspaper-border/30 p-4 md:p-6 bg-white/50"
             >
               <h3 className="font-playfair font-bold text-lg text-newspaper-accent mb-4 pb-2 border-b border-newspaper-border/20">
                 Quick Facts
@@ -126,7 +128,7 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="order-1 lg:order-2"
+            className="order-2 lg:order-2 w-full"
           >
             {/* Article tag */}
             <div className="mb-4">
@@ -136,12 +138,12 @@ export function HeroSection() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-newspaper-accent mb-6 leading-tight tracking-tight">
+            <h1 className="font-playfair font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-newspaper-accent mb-4 md:mb-6 leading-[1.1] tracking-tight">
               Engineering Reliable Systems for an Unreliable World
             </h1>
 
             {/* Subheadline */}
-            <h2 className="font-playfair font-semibold text-xl md:text-2xl text-newspaper-text/90 mb-6 leading-tight">
+            <h2 className="font-playfair font-semibold text-lg md:text-xl lg:text-2xl text-newspaper-text/90 mb-4 md:mb-6 leading-tight">
               By Shahab Alam
             </h2>
 
@@ -149,8 +151,8 @@ export function HeroSection() {
             <div className="newspaper-divider my-6" />
 
             {/* Lead paragraph */}
-            <div className="font-merriweather text-base md:text-lg text-newspaper-text/80 leading-relaxed space-y-4 text-justify">
-              <p className="first-letter:text-7xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:leading-[0.8] first-letter:mt-1">
+            <div className="font-merriweather text-sm md:text-base lg:text-lg text-newspaper-text/80 leading-relaxed space-y-3 md:space-y-4 text-left md:text-justify">
+              <p className="first-letter:text-5xl md:first-letter:text-7xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-2 md:first-letter:mr-3 first-letter:leading-[0.8] first-letter:mt-0.5 md:first-letter:mt-1">
                 In the evolving world of cloud infrastructure and DevOps, Shahab Alam focuses on building systems 
                 that are reliable, efficient, and easy to maintain. With about a year of experience in cloud and 
                 DevOps engineering, he's developed a growing interest in how automation, observability, and scalable 
