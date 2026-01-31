@@ -3,12 +3,20 @@
 import { motion } from "framer-motion"
 import { Download, X } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ReadMore } from "@/components/ui/read-more"
 
 export function KubernetesVisual() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [downloadCount, setDownloadCount] = useState(0)
+
+  useEffect(() => {
+    // Fetch download count from localStorage
+    const count = localStorage.getItem('k8s-download-count')
+    if (count) {
+      setDownloadCount(parseInt(count))
+    }
+  }, [])
 
   const handleDownload = () => {
     const link = document.createElement('a')
@@ -17,6 +25,11 @@ export function KubernetesVisual() {
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+
+    // Increment download count
+    const newCount = downloadCount + 1
+    setDownloadCount(newCount)
+    localStorage.setItem('k8s-download-count', newCount.toString())
   }
 
   return (
@@ -155,8 +168,17 @@ export function KubernetesVisual() {
                   className="mt-4 w-full px-4 py-2.5 border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 newspaper-meta text-xs flex items-center justify-center gap-2 group"
                 >
                   <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300" />
-                  <span>Download Image</span>
+                  <span>Download</span>
                 </button>
+
+                {/* Download Counter */}
+                {downloadCount > 0 && (
+                  <div className="mt-2 text-center">
+                    <p className="text-[0.6rem] newspaper-meta text-newspaper-text/50">
+                      {downloadCount} {downloadCount === 1 ? 'download' : 'downloads'}
+                    </p>
+                  </div>
+                )}
               </motion.div>
             </div>
           </div>

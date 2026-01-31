@@ -1,21 +1,40 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ExternalLink, ArrowRight } from "lucide-react"
+import { ExternalLink, Download } from "lucide-react"
 import Image from "next/image"
 import { ReadMore } from "@/components/ui/read-more"
+import { useState, useEffect } from "react"
 
 const projects = [
+  {
+    id: "kubernetes",
+    name: "Kubernetes Visual Reference",
+    tagline: "Learn Kubernetes visually.",
+    description: "A comprehensive visual reference covering core Kubernetes concepts including clusters, nodes, pods, services, deployments, and networking. Designed as a quick reference for engineers and learners to understand how these components interact within the Kubernetes ecosystem.",
+    link: "https://www.youtube.com/watch?v=X48VuDVv0do",
+    linkText: "Watch Course",
+    secondaryLink: "https://gitlab.com/ssshahab/k8s-3tier-notes-app",
+    secondaryLinkText: "View Project",
+    note: null,
+    image: "/previewk8s.png",
+    imageAlt: "Kubernetes Visual Reference",
+    imageCaption: "Kubernetes Architecture — Visual Guide",
+    isDownloadable: true,
+    downloadPath: "/Kubernets.png"
+  },
   {
     id: "turtle",
     name: "Turtle",
     tagline: "Track smarter. Apply better.",
     description: "Turtle is a minimalist job applications tracker that brings order to the chaos of job hunting. It provides a clean single-page dashboard for managing all your job applications — no more messy spreadsheets or scattered notes.",
     link: "https://trackwithturtle.com",
+    linkText: "View Live Site",
     note: null,
     image: "/turtle.png",
     imageAlt: "Turtle Dashboard",
-    imageCaption: "Turtle Dashboard — Simplifying Job Tracking"
+    imageCaption: "Turtle Dashboard — Simplifying Job Tracking",
+    isDownloadable: false
   },
   {
     id: "ecopilot",
@@ -23,14 +42,49 @@ const projects = [
     tagline: "Climate action, simplified.",
     description: "Climate responsibility has long been treated as something only large corporations can take on — with consultants, sustainability teams, and expensive tools. EcoPilot changes that. It's a simple, friendly platform that helps small and medium-sized businesses measure their carbon footprint, understand their emissions, and take meaningful steps to reduce them — without complexity. Includes an AI assistant for guidance.",
     link: "https://ecopilot.app",
+    linkText: "View Live Site",
     note: null,
     image: "/ecopilot.png",
     imageAlt: "EcoPilot Dashboard",
-    imageCaption: "EcoPilot Insights — Making Climate Action Accessible"
+    imageCaption: "EcoPilot Insights — Making Climate Action Accessible",
+    isDownloadable: false
   }
 ]
 
 export function Projects() {
+  const [downloadCounts, setDownloadCounts] = useState<{[key: string]: number}>({})
+
+  useEffect(() => {
+    // Load download counts from localStorage
+    const counts: {[key: string]: number} = {}
+    projects.forEach(project => {
+      if (project.isDownloadable) {
+        const count = localStorage.getItem(`${project.id}-download-count`)
+        if (count) {
+          counts[project.id] = parseInt(count)
+        } else {
+          // Initialize Kubernetes downloads at 7
+          counts[project.id] = 7
+          localStorage.setItem(`${project.id}-download-count`, '7')
+        }
+      }
+    })
+    setDownloadCounts(counts)
+  }, [])
+
+  const handleDownload = (projectId: string, downloadPath: string) => {
+    const link = document.createElement('a')
+    link.href = downloadPath
+    link.download = `${projectId}-reference.png`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    // Increment download count
+    const newCount = (downloadCounts[projectId] || 0) + 1
+    setDownloadCounts(prev => ({ ...prev, [projectId]: newCount }))
+    localStorage.setItem(`${projectId}-download-count`, newCount.toString())
+  }
   return (
     <section id="projects" className="section-padding-sm newspaper-bg paper-texture border-t border-newspaper-border/30">
       <div className="container-padding px-4 md:px-6">
@@ -107,16 +161,65 @@ export function Projects() {
 
                     {/* CTA Link - Newspaper style */}
                     <div className="pt-2 border-t border-newspaper-border/20">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-newspaper-accent hover:text-newspaper-text transition-all duration-300 group font-merriweather font-semibold text-sm underline-slide"
-                      >
-                        <span>Visit Project</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
-                        <ExternalLink className="w-3 h-3 opacity-60" />
-                      </a>
+                      {project.isDownloadable ? (
+                        <div className="space-y-3">
+                          {/* Download Button */}
+                          <button
+                            onClick={() => handleDownload(project.id, project.downloadPath!)}
+                            className="w-full px-4 py-2.5 border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 newspaper-meta text-xs flex items-center justify-center gap-2 group font-semibold"
+                          >
+                            <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300" />
+                            <span>Download Visual Reference</span>
+                          </button>
+                          
+                          {/* Download Counter */}
+                          {downloadCounts[project.id] > 0 && (
+                            <div className="text-center">
+                              <p className="text-[0.6rem] newspaper-meta text-newspaper-text/50">
+                                {downloadCounts[project.id]} {downloadCounts[project.id] === 1 ? 'download' : 'downloads'}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Learning Resources */}
+                          <div className="pt-2 border-t border-newspaper-border/20">
+                            <p className="text-[0.6rem] newspaper-meta text-newspaper-text/50 mb-2">LEARNING RESOURCES:</p>
+                            <div className="flex flex-col gap-2">
+                              <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-newspaper-text/70 hover:text-newspaper-accent transition-all duration-300 group font-merriweather text-xs"
+                              >
+                                <span className="text-newspaper-accent font-bold">▪</span>
+                                <span className="underline-slide">{project.linkText}</span>
+                                <ExternalLink className="w-3 h-3 opacity-60" />
+                              </a>
+                              {project.secondaryLink && (
+                                <a
+                                  href={project.secondaryLink}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 text-newspaper-text/70 hover:text-newspaper-accent transition-all duration-300 group font-merriweather text-xs"
+                                >
+                                  <span className="text-newspaper-accent font-bold">▪</span>
+                                  <span className="underline-slide">{project.secondaryLinkText}</span>
+                                  <ExternalLink className="w-3 h-3 opacity-60" />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full px-4 py-2.5 border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 newspaper-meta text-xs flex items-center justify-center gap-2 group font-semibold"
+                        >
+                          <span>{project.linkText}</span>
+                        </a>
+                      )}
                     </div>
                   </div>
 
@@ -130,13 +233,14 @@ export function Projects() {
                   >
                     {/* Framed Screenshot - Compact */}
                     <div className="relative">
-                      <div className="bg-white border border-newspaper-border/40 rounded-sm overflow-hidden shadow-soft hover:shadow-lg transition-shadow duration-300">
-                        <div className="relative aspect-[16/10] bg-white max-h-[45vh] lg:max-h-none">
+                      <div className={`${project.isDownloadable ? '' : 'bg-white border border-newspaper-border/40'} rounded-sm overflow-hidden shadow-soft hover:shadow-lg transition-shadow duration-300`}>
+                        <div className="relative aspect-[16/10] max-h-[45vh] lg:max-h-none">
                           <Image
                             src={project.image}
                             alt={project.imageAlt}
                             fill
                             className="object-cover object-top"
+                            quality={project.isDownloadable ? 100 : 75}
                             priority={index === 0}
                           />
                         </div>
