@@ -188,7 +188,7 @@ export function Projects() {
                           </button>
                           
                           {/* Download Counter */}
-                          {downloadCounts[project.id] > 0 && (
+                          {downloadCounts[project.id] !== undefined && (
                             <div className="text-center">
                               <p className="text-[0.6rem] newspaper-meta text-newspaper-text/50">
                                 {downloadCounts[project.id]} {downloadCounts[project.id] === 1 ? 'download' : 'downloads'}
