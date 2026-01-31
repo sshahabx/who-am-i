@@ -97,11 +97,15 @@ body {
   }
 
   .section-padding {
-    @apply py-12 md:py-24 lg:py-32 px-4 md:px-6;
+    @apply py-8 md:py-14 lg:py-18 px-4 md:px-6;
   }
 
   .section-padding-sm {
-    @apply py-8 md:py-16 lg:py-20 px-4 md:px-6;
+    @apply py-6 md:py-10 lg:py-12 px-4 md:px-6;
+  }
+
+  .section-padding-xs {
+    @apply py-4 md:py-6 lg:py-8 px-4 md:px-6;
   }
 
   .container-padding {
@@ -215,12 +219,62 @@ body {
     width: 100%;
   }
 
-  /* Line clamp utilities for mobile text truncation */
+  /* Line clamp utilities for text truncation */
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .line-clamp-none {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+  }
+
+  /* Compact newspaper spacing */
+  .newspaper-compact {
+    line-height: 1.5;
+  }
+
+  .newspaper-headline-spacing {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Image modal styles */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border: 2px solid #4a4a4a;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Infographic frame */
+  .infographic-frame {
+    border: 2px solid #4a4a4a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .infographic-frame:hover {
+    filter: contrast(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   }
 
   /* Smooth shadow for images */

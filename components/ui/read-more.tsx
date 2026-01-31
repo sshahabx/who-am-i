@@ -23,20 +23,20 @@ export function ReadMore({ children, maxLines = 3, className = "" }: ReadMorePro
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="overflow-hidden relative"
       >
-        <div className={!isExpanded ? "line-clamp-3 md:line-clamp-none" : ""}>
+        <div className={!isExpanded ? "line-clamp-3" : ""}>
           {children}
         </div>
         
         {/* Gradient fade for collapsed state */}
         {!isExpanded && (
-          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-newspaper-bg to-transparent pointer-events-none md:hidden" />
+          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-newspaper-bg to-transparent pointer-events-none" />
         )}
       </motion.div>
       
-      {/* Show More/Less Button - only on mobile */}
+      {/* Show More/Less Button - works on all screen sizes */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="md:hidden mt-3 flex items-center gap-1 text-sm text-newspaper-accent hover:text-newspaper-text transition-colors duration-200 font-merriweather italic group"
+        className="mt-3 flex items-center gap-1 text-sm text-newspaper-accent hover:text-newspaper-text transition-colors duration-200 font-merriweather italic group"
       >
         <span>{isExpanded ? "Show Less" : "Show More"}</span>
         <motion.div

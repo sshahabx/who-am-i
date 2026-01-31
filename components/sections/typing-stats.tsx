@@ -103,35 +103,35 @@ export function TypingStats() {
   }
 
   return (
-    <section className="section-padding newspaper-bg paper-texture border-t-2 border-b border-newspaper-border/30 pb-20 md:pb-12">
+    <section className="section-padding-sm newspaper-bg paper-texture border-t border-newspaper-border/30">
       <div className="container-padding px-4 md:px-6">
         {/* Two Column Newspaper Layout */}
         <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-[70%_30%] gap-0">
           {/* Left Column: Typing Stats */}
-          <div className="border-r-0 lg:border-r-2 border-newspaper-border/30 lg:pr-8">
+          <div className="border-r-0 lg:border-r border-newspaper-border/30 lg:pr-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              {/* Section Header */}
-              <div className="mb-8 md:mb-10">
-                <div className="newspaper-divider mb-3" />
-                <h3 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-newspaper-accent mb-1 tracking-tight">
+              {/* Section Header - Compact */}
+              <div className="mb-6 md:mb-7">
+                <div className="newspaper-divider mb-2" />
+                <h3 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-newspaper-accent newspaper-headline-spacing tracking-tight">
                   Daily Typing Activity
                 </h3>
-                <p className="newspaper-meta text-newspaper-text/50 mb-3 text-[0.65rem]">
+                <p className="newspaper-meta text-newspaper-text/50 text-[0.65rem] mt-1">
                   Performance Metrics
                 </p>
-                <div className="newspaper-divider" />
-                <p className="text-xs md:text-sm font-merriweather italic text-newspaper-text/60 mt-3">
+                <div className="newspaper-divider mt-2" />
+                <p className="text-xs md:text-sm font-merriweather italic text-newspaper-text/60 mt-2">
                   Tracking consistency, focus, and flow.
                 </p>
               </div>
 
-              {/* Stats Grid - Responsive */}
-              <div className="grid grid-cols-3 gap-2 md:gap-4 mb-8 md:mb-10">
+              {/* Stats Grid - Responsive & Compact */}
+              <div className="grid grid-cols-3 gap-2 md:gap-3 mb-6 md:mb-7">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -139,8 +139,8 @@ export function TypingStats() {
                   viewport={{ once: true }}
                   className="bg-white border border-newspaper-border/40 p-3 md:p-4 text-center"
                 >
-                  <div className="newspaper-meta text-newspaper-text/50 mb-1 md:mb-2 text-[0.6rem] md:text-xs">AVG SPEED</div>
-                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-newspaper-accent mb-0.5 md:mb-1 font-mono tracking-tight">{avgSpeed}</div>
+                  <div className="newspaper-meta text-newspaper-text/50 mb-1 text-[0.6rem] md:text-xs">AVG SPEED</div>
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-newspaper-accent mb-0.5 font-mono tracking-tight">{avgSpeed}</div>
                   <div className="text-[0.6rem] md:text-xs newspaper-meta text-newspaper-text/70">WPM</div>
                 </motion.div>
                 
@@ -151,8 +151,8 @@ export function TypingStats() {
                   viewport={{ once: true }}
                   className="bg-white border border-newspaper-border/40 p-3 md:p-4 text-center"
                 >
-                  <div className="newspaper-meta text-newspaper-text/50 mb-1 md:mb-2 text-[0.6rem] md:text-xs">TESTS</div>
-                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-newspaper-accent mb-0.5 md:mb-1 font-mono tracking-tight">{stats?.stats.tests_completed || 902}</div>
+                  <div className="newspaper-meta text-newspaper-text/50 mb-1 text-[0.6rem] md:text-xs">TESTS</div>
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-newspaper-accent mb-0.5 font-mono tracking-tight">{stats?.stats.tests_completed || 902}</div>
                   <div className="text-[0.6rem] md:text-xs newspaper-meta text-newspaper-text/70">Sessions</div>
                 </motion.div>
                 
@@ -163,28 +163,28 @@ export function TypingStats() {
                   viewport={{ once: true }}
                   className="bg-white border border-newspaper-border/40 p-3 md:p-4 text-center"
                 >
-                  <div className="newspaper-meta text-newspaper-text/50 mb-1 md:mb-2 text-[0.6rem] md:text-xs">TIME</div>
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-newspaper-accent mb-0.5 md:mb-1 font-mono tracking-tight text-[0.9rem] md:text-3xl lg:text-4xl">{stats?.stats.time_typing || "01:40:15"}</div>
+                  <div className="newspaper-meta text-newspaper-text/50 mb-1 text-[0.6rem] md:text-xs">TIME</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-newspaper-accent mb-0.5 font-mono tracking-tight text-[0.9rem] md:text-3xl lg:text-4xl">{stats?.stats.time_typing || "01:40:15"}</div>
                   <div className="text-[0.6rem] md:text-xs newspaper-meta text-newspaper-text/70">H:M:S</div>
                 </motion.div>
               </div>
 
-              {/* Activity Calendar */}
+              {/* Activity Calendar - Compact */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="border-t border-newspaper-border/30 pt-6 md:pt-8"
+                className="border-t border-newspaper-border/30 pt-5 md:pt-6"
               >
-                <div className="mb-4">
-                  <h4 className="font-playfair text-lg md:text-xl font-bold text-newspaper-accent mb-2">Annual Overview</h4>
+                <div className="mb-3">
+                  <h4 className="font-playfair text-lg md:text-xl font-bold text-newspaper-accent newspaper-headline-spacing">Annual Overview</h4>
                   <p className="text-[0.65rem] md:text-xs font-merriweather italic text-newspaper-text/60">
                     Fig. 1 — Daily typing activity distribution over the past year
                   </p>
                 </div>
                 
-                {/* Chart Container */}
+                {/* Chart Container - Compact */}
                 <div className="bg-white border border-newspaper-border/40 p-3 md:p-4 shadow-sm">
                   <div className="rounded overflow-hidden">
                     <Image 
@@ -197,15 +197,15 @@ export function TypingStats() {
                   </div>
                   
                   {/* Chart Caption */}
-                  <div className="mt-2 md:mt-3 pt-2 md:pt-3 border-t border-newspaper-border/20">
+                  <div className="mt-2 pt-2 border-t border-newspaper-border/20">
                     <p className="text-[0.65rem] md:text-xs font-merriweather italic text-newspaper-text/60">
                       Data sourced from Monkeytype practice sessions. Each cell represents daily typing activity.
                     </p>
                   </div>
                 </div>
 
-                {/* Source Attribution */}
-                <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-newspaper-border/20">
+                {/* Source Attribution - Compact */}
+                <div className="mt-3 md:mt-4 pt-3 border-t border-newspaper-border/20">
                   <a
                     href="https://monkeytype.com/profile/r3dh4tx"
                     target="_blank"
@@ -220,28 +220,28 @@ export function TypingStats() {
             </motion.div>
           </div>
 
-          {/* Right Column / Bottom on Mobile: Comic Relief Sidebar */}
+          {/* Right Column / Bottom on Mobile: Comic Relief Sidebar - Compact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="lg:pl-8 mt-8 lg:mt-0 pt-8 lg:pt-0 border-t lg:border-t-0 border-newspaper-border/30 bg-[#faf9f6] lg:bg-transparent p-4 md:p-6 lg:p-0 -mx-4 md:-mx-6 lg:mx-0"
+            className="lg:pl-6 mt-6 lg:mt-0 pt-6 lg:pt-0 border-t lg:border-t-0 border-newspaper-border/30 bg-[#faf9f6] lg:bg-transparent p-4 md:p-5 lg:p-0 -mx-4 md:-mx-6 lg:mx-0"
           >
-            {/* Sidebar Header */}
-            <div className="mb-6">
-              <div className="newspaper-divider mb-3" />
-              <h4 className="font-playfair text-xl md:text-2xl font-bold text-newspaper-accent mb-1 tracking-tight">
+            {/* Sidebar Header - Compact */}
+            <div className="mb-5">
+              <div className="newspaper-divider mb-2" />
+              <h4 className="font-playfair text-xl md:text-2xl font-bold text-newspaper-accent newspaper-headline-spacing tracking-tight">
                 Comic Relief
               </h4>
-              <p className="newspaper-meta text-newspaper-text/50 mb-3 text-[0.65rem]">
+              <p className="newspaper-meta text-newspaper-text/50 text-[0.65rem] mt-1">
                 Tech Humor
               </p>
-              <div className="newspaper-divider" />
+              <div className="newspaper-divider mt-2" />
             </div>
 
-            {/* Joke Card with Swipe Animation */}
-            <div className="relative mb-4">
+            {/* Joke Card with Swipe Animation - Compact */}
+            <div className="relative mb-3">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentJokeIndex}
@@ -249,16 +249,16 @@ export function TypingStats() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white border border-newspaper-border/40 p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-300"
+                  className="bg-white border border-newspaper-border/40 p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     <p className="font-merriweather text-sm text-newspaper-text/80 leading-relaxed italic">
                       {currentJoke.joke}
                     </p>
                     <p className="font-merriweather text-sm text-newspaper-accent font-semibold">
                       {currentJoke.punchline}
                     </p>
-                    <div className="pt-3 border-t border-newspaper-border/20">
+                    <div className="pt-2 border-t border-newspaper-border/20">
                       <p className="text-[0.65rem] newspaper-meta text-newspaper-text/50">
                         {currentJoke.source}
                       </p>
@@ -284,8 +284,8 @@ export function TypingStats() {
               </button>
             </div>
 
-            {/* Joke Navigation Dots */}
-            <div className="flex items-center justify-center gap-2 mb-6">
+            {/* Joke Navigation Dots - Compact */}
+            <div className="flex items-center justify-center gap-2 mb-5">
               {techJokes.map((_, index) => (
                 <button
                   key={index}
@@ -301,16 +301,16 @@ export function TypingStats() {
             </div>
 
             {/* Divider */}
-            <div className="newspaper-divider my-6" />
+            <div className="newspaper-divider my-5" />
 
-            {/* Fun Tech Quotes Section - Hidden on mobile */}
-            <div className="hidden lg:block space-y-4">
-              <h5 className="font-playfair text-lg font-bold text-newspaper-accent">
+            {/* Fun Tech Quotes Section - Hidden on mobile, Compact */}
+            <div className="hidden lg:block space-y-3">
+              <h5 className="font-playfair text-lg font-bold text-newspaper-accent newspaper-headline-spacing">
                 Wisdom Corner
               </h5>
               
-              <div className="bg-white border-l-4 border-newspaper-accent p-4">
-                <p className="font-merriweather text-xs text-newspaper-text/80 italic leading-relaxed mb-2">
+              <div className="bg-white border-l-2 border-newspaper-accent p-3">
+                <p className="font-merriweather text-xs text-newspaper-text/80 italic leading-relaxed mb-1.5">
                   "Any fool can write code that a computer can understand. Good programmers write code that humans can understand."
                 </p>
                 <p className="text-xs newspaper-meta text-newspaper-text/50">
@@ -318,8 +318,8 @@ export function TypingStats() {
                 </p>
               </div>
 
-              <div className="bg-white border-l-4 border-newspaper-accent p-4">
-                <p className="font-merriweather text-xs text-newspaper-text/80 italic leading-relaxed mb-2">
+              <div className="bg-white border-l-2 border-newspaper-accent p-3">
+                <p className="font-merriweather text-xs text-newspaper-text/80 italic leading-relaxed mb-1.5">
                   "First, solve the problem. Then, write the code."
                 </p>
                 <p className="text-xs newspaper-meta text-newspaper-text/50">
@@ -328,8 +328,8 @@ export function TypingStats() {
               </div>
             </div>
 
-            {/* More Link */}
-            <div className="mt-6 pt-4 border-t border-newspaper-border/20">
+            {/* More Link - Compact */}
+            <div className="mt-5 pt-3 border-t border-newspaper-border/20">
               <a
                 href="https://github.com/sshahabx"
                 target="_blank"

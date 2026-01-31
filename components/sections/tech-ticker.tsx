@@ -59,13 +59,13 @@ export function TechTicker() {
   const duplicatedStack = [...techStack, ...techStack]
 
   return (
-    <section className="py-10 md:py-16 overflow-hidden newspaper-bg border-t-2 border-b-2 border-newspaper-border/40 mb-16 md:mb-24">
-      <div className="container-padding mb-6 md:mb-8 px-4 md:px-6">
+    <section className="py-6 md:py-10 overflow-hidden newspaper-bg border-t border-b border-newspaper-border/40">
+      <div className="container-padding mb-4 md:mb-6 px-4 md:px-6">
         <div className="text-center">
-          <h3 className="font-playfair text-xl md:text-2xl font-bold text-newspaper-accent mb-2">
+          <h3 className="font-playfair text-xl md:text-2xl font-bold text-newspaper-accent newspaper-headline-spacing">
             Technology Stack
           </h3>
-          <div className="newspaper-divider max-w-md mx-auto" />
+          <div className="newspaper-divider max-w-md mx-auto mt-2" />
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export function TechTicker() {
         <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#f8f7f2] to-transparent z-10 pointer-events-none"></div>
         
         <motion.div
-          className="flex items-center gap-4 md:gap-8 whitespace-nowrap py-3 md:py-4"
+          className="flex items-center gap-3 md:gap-6 whitespace-nowrap py-2 md:py-3"
           animate={{
             x: [0, -50 + "%"],
           }}
@@ -111,9 +111,9 @@ export function TechTicker() {
         </motion.div>
       </div>
 
-      {/* Bottom caption */}
-      <div className="container-padding mt-4 md:mt-6 px-4 md:px-6">
-        <p className="text-center text-[0.65rem] md:text-xs font-merriweather italic text-newspaper-text/50">
+      {/* Bottom caption - Compact */}
+      <div className="container-padding mt-3 md:mt-4 px-4 md:px-6">
+        <p className="text-center text-[0.6rem] md:text-xs font-merriweather italic text-newspaper-text/50">
           Core technologies and frameworks utilized in production environments
         </p>
       </div>
