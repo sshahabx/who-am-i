@@ -55,24 +55,26 @@ export function Projects() {
   const [downloadCounts, setDownloadCounts] = useState<{[key: string]: number}>({})
 
   useEffect(() => {
-    // Load download counts from localStorage
-    const counts: {[key: string]: number} = {}
-    projects.forEach(project => {
-      if (project.isDownloadable) {
-        const count = localStorage.getItem(`${project.id}-download-count`)
-        if (count) {
-          counts[project.id] = parseInt(count)
-        } else {
-          // Initialize Kubernetes downloads at 7
-          counts[project.id] = 7
-          localStorage.setItem(`${project.id}-download-count`, '7')
+    // Fetch download counts from API
+    const fetchDownloads = async () => {
+      try {
+        const response = await fetch('/api/downloads')
+        if (response.ok) {
+          const data = await response.json()
+          setDownloadCounts(data)
         }
+      } catch (error) {
+        console.error('Error fetching downloads:', error)
+        // Fallback to default
+        setDownloadCounts({ kubernetes: 7 })
       }
-    })
-    setDownloadCounts(counts)
+    }
+    
+    fetchDownloads()
   }, [])
 
-  const handleDownload = (projectId: string, downloadPath: string) => {
+  const handleDownload = async (projectId: string, downloadPath: string) => {
+    // Trigger download
     const link = document.createElement('a')
     link.href = downloadPath
     link.download = `${projectId}-reference.png`
@@ -80,10 +82,23 @@ export function Projects() {
     link.click()
     document.body.removeChild(link)
 
-    // Increment download count
-    const newCount = (downloadCounts[projectId] || 0) + 1
-    setDownloadCounts(prev => ({ ...prev, [projectId]: newCount }))
-    localStorage.setItem(`${projectId}-download-count`, newCount.toString())
+    // Increment download count via API
+    try {
+      const response = await fetch('/api/downloads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ projectId }),
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setDownloadCounts(prev => ({ ...prev, [projectId]: data.count }))
+      }
+    } catch (error) {
+      console.error('Error incrementing download:', error)
+    }
   }
   return (
     <section id="projects" className="section-padding-sm newspaper-bg paper-texture border-t border-newspaper-border/30">
