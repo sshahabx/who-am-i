@@ -33,7 +33,7 @@ export function TechTicker() {
     <section id="stack" className="section-padding-sm newspaper-bg border-t border-newspaper-border/40">
       <div className="container-padding px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
-          <SectionHeader kicker="Section C · Classifieds" title="Tech Stack" deck="What runs in production, grouped by where it lives." />
+          <SectionHeader index="03" title="Tech stack" deck="The tools I use most, grouped by area." />
         </div>
       </div>
 

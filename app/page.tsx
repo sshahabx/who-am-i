@@ -4,7 +4,6 @@ import { Experience } from "@/components/sections/experience"
 import { Projects } from "@/components/sections/projects"
 import { TechTicker } from "@/components/sections/tech-ticker"
 import { Credentials } from "@/components/sections/credentials"
-import { Newsletter } from "@/components/sections/newsletter"
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <Projects />
       <TechTicker />
       <Credentials />
-      <Newsletter />
     </>
   )
 }

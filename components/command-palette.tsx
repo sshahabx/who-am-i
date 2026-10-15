@@ -9,9 +9,9 @@ import { Home, User, Briefcase, Search, FolderGit2, Layers, PenLine } from "luci
 const sections = [
   { id: "about", label: "About", hint: "Profile and current role", icon: User },
   { id: "experience", label: "Experience", hint: "Sapience AI, Centrox AI, iEngineering", icon: Briefcase },
-  { id: "projects", label: "Projects", hint: "Platform builds and side builds", icon: FolderGit2 },
+  { id: "projects", label: "Projects", hint: "Work and side projects", icon: FolderGit2 },
   { id: "stack", label: "Tech Stack", hint: "GCP, AWS, Kubernetes, Terraform, and more", icon: Layers },
-  { id: "writing", label: "Writing and Credentials", hint: "Articles, certifications, education", icon: PenLine },
+  { id: "writing", label: "Writing and education", hint: "Articles, certifications, degree", icon: PenLine },
 ]
 
 export function CommandPalette() {

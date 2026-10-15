@@ -33,7 +33,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="border-t-2 border-newspaper-border/40 pt-16 md:pt-20 pb-8 md:pb-10 mt-12 md:mt-16 newspaper-bg paper-texture relative z-10">
+    <footer className="border-t-2 border-newspaper-border/40 pt-10 md:pt-14 pb-28 md:pb-10 newspaper-bg paper-texture relative z-10">
       <div className="container-padding px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,7 +54,7 @@ export function Footer() {
                 SHAHAB ALAM
               </h2>
               <p className="newspaper-meta text-newspaper-text/50 text-[0.6rem] md:text-xs">
-                DevOps / Platform Engineer · Cloud, Security, Reliability
+                DevOps Engineer · Islamabad, Pakistan
               </p>
             </motion.div>
           </div>
@@ -134,10 +134,7 @@ export function Footer() {
               
               <div className="space-y-1">
                 <p className="newspaper-meta text-newspaper-text/50 text-[0.6rem] md:text-xs">
-                  THE TECH TATLER · EST. 2025
-                </p>
-                <p className="newspaper-meta text-newspaper-text/50 text-[0.6rem] md:text-xs">
-                  Vol. 02 · Platform Edition · Published Continuously
+                  The Tech Tatler · Est. 2025
                 </p>
               </div>
 

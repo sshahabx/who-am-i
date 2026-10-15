@@ -95,7 +95,7 @@ export function Projects() {
     <section id="projects" className="section-padding-sm newspaper-bg paper-texture border-t border-newspaper-border/30">
       <div className="container-padding px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
-          <SectionHeader kicker="Section B · Features" title="Projects" deck="Platform builds, from GPU serving to identity automation." />
+          <SectionHeader index="02" title="Projects" deck="A mix of things I built at work and on my own." />
 
           {/* Engineering projects: newspaper columns */}
           <div className="grid md:grid-cols-2 border-t border-l border-newspaper-border/30">
@@ -108,12 +108,9 @@ export function Projects() {
                 viewport={{ once: true }}
                 className="group border-r border-b border-newspaper-border/30 p-5 md:p-7 bg-white/30 hover:bg-white/70 transition-colors duration-300 flex flex-col"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="newspaper-meta text-[0.6rem] text-newspaper-text/50">
-                    No. {String(index + 1).padStart(2, "0")}
-                  </span>
+                <div className="flex items-center mb-3">
                   <span className="newspaper-meta text-[0.6rem] px-2 py-0.5 border border-newspaper-border/40 text-newspaper-text/60">
-                    {project.context === "Work" ? "At work" : "Personal"}
+                    {project.context === "Work" ? "Work" : "Personal"}
                   </span>
                 </div>
                 <h3 className="font-playfair text-xl md:text-2xl lg:text-3xl font-bold text-newspaper-accent leading-tight mb-2">
@@ -141,8 +138,8 @@ export function Projects() {
           {/* Side builds */}
           <div className="mt-10 md:mt-12">
             <div className="flex items-baseline justify-between border-b-[3px] border-double border-newspaper-border/40 pb-2 mb-5">
-              <h3 className="font-playfair text-xl md:text-2xl font-bold text-newspaper-accent">Side Builds</h3>
-              <span className="newspaper-meta text-[0.6rem] text-newspaper-text/50">Shipped on weekends</span>
+              <h3 className="font-playfair text-xl md:text-2xl font-bold text-newspaper-accent">Side projects</h3>
+              <span className="font-merriweather italic text-xs text-newspaper-text/50">Small products I built and run myself</span>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sideBuilds.map((project, index) => (

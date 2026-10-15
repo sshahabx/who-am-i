@@ -1,11 +1,11 @@
 // Single source of truth for portfolio content.
+// Keep work descriptions general: no internal names, counts, or architecture details.
 
 export const profile = {
   name: "Muhammad Shahab Alam",
   shortName: "Shahab Alam",
-  title: "DevOps / Platform Engineer",
-  focus: "Cloud infrastructure, security, and reliability",
-  location: "Islamabad, Pakistan (remote)",
+  title: "DevOps Engineer",
+  location: "Islamabad, Pakistan · Remote",
   email: "idevshahab@gmail.com",
   links: {
     linkedin: "https://www.linkedin.com/in/sshahabx/",
@@ -13,28 +13,20 @@ export const profile = {
     medium: "https://medium.com/@ssshahab_",
     twitter: "https://x.com/ssshahab_",
   },
-  headline: "I turn ClickOps sprawl into version-controlled, least-privilege infrastructure.",
-  subheadline:
-    "DevOps engineer with a cybersecurity background, building secure, governed cloud platforms on GCP and AWS.",
+  headline: "I build cloud infrastructure that stays secure and boring in production.",
+  subheadline: "DevOps engineer working across Google Cloud and AWS, with a background in cybersecurity.",
   bio: [
-    "I'm a DevOps engineer with a BS in Cybersecurity who ships production infrastructure as code on GCP and AWS. I care about infrastructure that is reliable, auditable, and secure by default: least-privilege access, signed releases, private networking, and monitoring that catches problems before people do.",
-    "I currently own platform and security work at Sapience AI. On real workloads, I've cut cloud costs by 35%, deployment time by 70%, and incident detection time by 50%.",
+    "I studied cybersecurity before I moved into DevOps, and it still shapes how I work. Access should be given on purpose. Releases should be traceable. Anything that doesn't need to be public shouldn't be.",
+    "Day to day, that means a lot of Terraform, Kubernetes, and the less visible parts of running production: permissions, networking, alerts, and docs that people actually read.",
   ],
 }
 
 export const stats = [
-  { value: "35%", label: "Cloud cost cut" },
-  { value: "70%", label: "Faster deploys" },
-  { value: "50%", label: "Faster incident detection" },
-  { value: "90%", label: "Of GCP under IaC" },
-  { value: "2M+", label: "Records migrated live" },
-  { value: "20K+", label: "Daily security events monitored" },
+  { value: "35%", label: "lower cloud costs" },
+  { value: "70%", label: "faster deployments" },
+  { value: "50%", label: "faster incident detection" },
+  { value: "2M+", label: "records migrated with ~5 min downtime" },
 ]
-
-export interface Highlight {
-  title?: string
-  body: string
-}
 
 export interface Role {
   company: string
@@ -43,8 +35,8 @@ export interface Role {
   period: string
   location: string
   summary?: string
-  scope?: string
-  highlights: Highlight[]
+  intro?: string
+  highlights: string[]
 }
 
 export const experience: Role[] = [
@@ -53,52 +45,17 @@ export const experience: Role[] = [
     url: "https://sapienceai.co",
     role: "DevOps Engineer",
     period: "Jul 2026 – Present",
-    location: "Remote · Seattle, WA",
-    summary:
-      "Sapience AI is the collective intelligence platform for professional communities. It sits above CRMs, AMS platforms, and knowledge bases to make an organization's knowledge searchable, actionable, and shared.",
-    scope:
-      "Owner-level administrator for the GCP organization and Google Workspace. I run the DevOps request queue, build the isolated customer-environment platform and shared AI services, own IAM and identity lifecycle, review infrastructure pull requests, and mentor a second DevOps engineer.",
+    location: "Remote",
+    summary: "Sapience AI is the collective intelligence platform for professional communities.",
+    intro:
+      "I look after our Google Cloud and Workspace setup: who can access what, how our networks fit together, the environments customers run in, and the shared services our AI features depend on. I also review infrastructure changes and help newer engineers find their footing.",
     highlights: [
-      {
-        title: "Shared GPU embedding service",
-        body: "Built a private GKE cluster on reserved NVIDIA L4 GPUs running Hugging Face TEI, fronted by a Cloud Run gateway with IAM-authenticated Cloud SQL (no stored passwords). Connected to tenant environments over Private Service Connect, with every network control in Terraform.",
-      },
-      {
-        title: "Isolated customer environments",
-        body: "Took the first single-tenant environment from release candidate to live: a signed release path (cosign plus Binary Authorization), a platform-owned artifact registry, release-tag gates, a porting playbook, and a starter template so app teams can ship on their own.",
-      },
-      {
-        title: "Least-privilege IAM, org-wide",
-        body: "Moved the GCP org to group-based RBAC with just-in-time break-glass access and no standing org owner. About 90% of previously ClickOps-managed resources now live in Terraform. Extended a VPC Service Controls dry run across service identities.",
-      },
-      {
-        title: "Automated offboarding",
-        body: "Built a toolkit that takes one email address and revokes and verifies access across Workspace, GCP, GitHub, Slack, Linear, and other SaaS tools. First run: 22 direct IAM bindings removed and project owners cut by half.",
-      },
-      {
-        title: "Search and retrieval infrastructure",
-        body: "Brought OpenSearch on GKE live for hybrid retrieval in dev and production, fixed snapshot-to-GCS failures, and designed the per-tenant deployment model.",
-      },
-      {
-        title: "Observability and LLM tracing",
-        body: "Rolled out per-tenant Langfuse tracing across all three main environments with an internal load balancer and tenant-isolation firewalling. Audited alerting and restored delivery for policies that had silently stopped notifying.",
-      },
-      {
-        title: "Hardened CI/CD",
-        body: "Rebuilt the self-managed GKE runner fleet (GitHub Actions ARC) around ephemeral, credential-free build environments, cutting exposed attack surface by about 40% and queue wait time by about 30%.",
-      },
-      {
-        title: "Security and compliance",
-        body: "Classified every GitHub repository into security tiers for scanning scope, ran IAM audits, piloted Wazuh for bastion auditing, and aligned controls with SOC 2 and GDPR alongside the security team.",
-      },
-      {
-        title: "Platform enablement",
-        body: "Centralized IPAM behind IAP and Cloud Armor (20+ subnets, ~50% faster provisioning), set up a domain-wide-delegation mailer, enabled Vertex AI, Document AI, and Vision, and secured 10+ production services behind IAP, Cloud Armor, and load balancers.",
-      },
-      {
-        title: "Docs",
-        body: "Wrote runbooks, ADRs, and onboarding guides that cut new-engineer ramp-up by about 30%.",
-      },
+      "Set up GPU-backed model serving on Kubernetes that other services reach only over private networking. All of it is defined in Terraform.",
+      "Helped launch dedicated customer environments, with a release pipeline that only deploys signed, verified images.",
+      "Moved cloud access to group-based roles with time-limited elevated access, and brought most hand-built resources under Terraform.",
+      "Wrote an offboarding tool that removes someone's access across our cloud and SaaS tools, then checks that it's really gone.",
+      "Rebuilt our self-hosted CI runners so every build starts clean and carries no long-lived credentials. Queue times dropped about 30%.",
+      "Added LLM tracing with Langfuse, tidied up alerting, and wrote the runbooks and onboarding docs the team now uses.",
     ],
   },
   {
@@ -106,27 +63,25 @@ export const experience: Role[] = [
     url: "https://centrox.ai/",
     role: "DevOps Engineer",
     period: "Oct 2025 – Jul 2026",
-    location: "Islamabad, Pakistan",
+    location: "Islamabad",
     highlights: [
-      { body: "Cut AWS costs ~35% by moving ECS to Fargate Spot (staging) and Fargate On-Demand (production)." },
-      { body: "Cut deployment time ~70% by replacing Terraform-triggered full-service recreation with rolling deployments." },
-      { body: "Isolated staging and production Terraform environments for a microservices app; automated DNS with Route 53." },
-      { body: "Designed AWS PrivateLink to MongoDB Atlas, removing public database exposure for SOC 2 network isolation." },
-      { body: "Supported a live cross-region MongoDB Atlas migration of 2M+ records: ~5 minutes of downtime, zero data loss." },
-      { body: "Built an on-prem Prometheus and Grafana stack (~50% faster incident detection) and a K3s three-tier deployment." },
-      { body: "Built an Apache Airflow pipeline running 5+ daily crawlers over 100,000+ documents per run." },
-      { body: "Ran on-prem GitLab runners (~30% faster CI), SonarQube quality gates (~30% fewer issues), and CVAT plus Label Studio." },
-      { body: "Mentored engineers on DevOps workflows, cutting routine-deploy dependency on DevOps by ~60%." },
+      "Cut AWS costs about 35% by moving container workloads to Fargate, with Spot capacity for staging.",
+      "Made deployments about 70% faster by switching from full service recreation to rolling updates.",
+      "Split staging and production into separate Terraform environments and automated DNS.",
+      "Set up private connectivity to a managed database using AWS PrivateLink.",
+      "Helped move 2M+ records across regions with about five minutes of downtime and no data loss.",
+      "Built Prometheus and Grafana monitoring that caught incidents about 50% sooner.",
+      "Ran self-hosted GitLab runners and code-quality checks, and taught developers to handle routine deploys on their own.",
     ],
   },
   {
     company: "iEngineering",
     role: "DevOps Intern",
-    period: "Jul 2024 – Sep 2024",
-    location: "Islamabad, Pakistan",
+    period: "Jul – Sep 2024",
+    location: "Islamabad",
     highlights: [
-      { body: "Ran a Wazuh SIEM covering 20,000+ security events daily; cut incident response time 60%." },
-      { body: "Built EC2 Auto Scaling across AZs, Route 53 with ALB, and Lambda triggers with CloudWatch." },
+      "Monitored security events with a Wazuh SIEM and helped shorten incident response.",
+      "Set up EC2 auto scaling, load balancing, and Lambda-based alerting on AWS.",
     ],
   },
 ]
@@ -138,29 +93,19 @@ export interface StackGroup {
 
 export const techStack: StackGroup[] = [
   {
-    area: "Cloud — GCP",
-    tools: ["GKE", "Cloud Run", "Cloud SQL", "Private Service Connect", "VPC", "VPC Service Controls", "IAP", "Cloud Armor", "IPAM", "Load Balancing", "Binary Authorization", "Artifact Registry", "Pub/Sub", "GCS", "BigQuery", "Cloud Logging and Monitoring", "IAM/PAM", "Workload Identity Federation", "Vertex AI", "Document AI"],
+    area: "Google Cloud",
+    tools: ["GKE", "Cloud Run", "Cloud SQL", "VPC", "Private Service Connect", "IAP", "Cloud Armor", "Load Balancing", "Artifact Registry", "Binary Authorization", "Pub/Sub", "Cloud Storage", "BigQuery", "Cloud Monitoring", "IAM", "Vertex AI"],
   },
   {
-    area: "Cloud — AWS",
+    area: "AWS",
     tools: ["EC2", "ECS", "Fargate", "VPC", "ALB", "Auto Scaling", "Route 53", "IAM", "Lambda", "S3", "CloudWatch", "PrivateLink"],
   },
-  {
-    area: "IaC and CI/CD",
-    tools: ["Terraform", "GitHub Actions (ARC)", "GitLab CI/CD", "Helm", "Docker", "Docker Compose"],
-  },
-  { area: "Containers", tools: ["Kubernetes (GKE, K3s)", "NVIDIA GPU node pools"] },
-  { area: "Supply-chain security", tools: ["cosign", "Binary Authorization", "Trivy", "SonarQube"] },
-  {
-    area: "Security and identity",
-    tools: ["IAM/RBAC", "Google Workspace admin (DWD)", "Bitwarden", "Wazuh SIEM", "SOC 2", "GDPR"],
-  },
+  { area: "Infrastructure and CI/CD", tools: ["Terraform", "GitHub Actions", "GitLab CI/CD", "Helm", "Docker"] },
+  { area: "Kubernetes", tools: ["GKE", "K3s", "GPU node pools"] },
+  { area: "Security", tools: ["IAM and RBAC", "cosign", "Trivy", "SonarQube", "Wazuh", "SOC 2", "GDPR"] },
   { area: "Observability", tools: ["Prometheus", "Grafana", "Cloud Monitoring", "Langfuse"] },
-  {
-    area: "Data and AI infra",
-    tools: ["OpenSearch", "Hugging Face TEI", "MongoDB Atlas", "Redis", "Apache Airflow", "DigitalOcean Spaces"],
-  },
-  { area: "Languages and tools", tools: ["Python", "Bash", "Linux", "Git", "Nginx"] },
+  { area: "Data", tools: ["OpenSearch", "MongoDB Atlas", "Redis", "Apache Airflow"] },
+  { area: "Languages", tools: ["Python", "Bash", "Linux", "Git", "Nginx"] },
 ]
 
 export interface EngineeringProject {
@@ -173,52 +118,51 @@ export interface EngineeringProject {
 
 export const engineeringProjects: EngineeringProject[] = [
   {
-    title: "GPU Embedding Service on GKE",
+    title: "GPU model serving on Kubernetes",
     description:
-      "A shared embedding service on a private GKE cluster with L4 GPU node pools, serving models through Hugging Face TEI. Tenants reach it over Private Service Connect, and every network control lives in Terraform.",
-    outcome: "Private, IAM-gated, fully codified",
-    tags: ["GKE", "NVIDIA L4", "TEI", "PSC", "Terraform"],
+      "A shared service for running embedding models on GPUs. It isn't exposed to the internet, other services reach it privately, and the whole setup lives in Terraform.",
+    outcome: "Private by default, reproducible from code",
+    tags: ["Kubernetes", "GPUs", "Terraform", "Private networking"],
     context: "Work",
   },
   {
-    title: "Identity Offboarding Automation",
+    title: "Offboarding automation",
     description:
-      "One input, one run: an email address goes in, and access is revoked and then verified across identity, cloud, source control, chat, and project-tracking systems.",
-    outcome: "Access revoked and verified across 6+ systems",
-    tags: ["Google Workspace", "GCP IAM", "GitHub", "Slack", "Linear"],
+      "Give it one email address and it removes that person's access from every connected tool, then checks each one to confirm nothing was missed.",
+    outcome: "One command instead of a checklist",
+    tags: ["Automation", "IAM", "Google Workspace", "GitHub"],
     context: "Work",
   },
   {
-    title: "Automated Cloud Infrastructure and Delivery Pipeline",
+    title: "Infrastructure and delivery pipeline",
     description:
-      "A Django and React app containerized with Docker and Nginx, with AWS VPC and EC2 provisioned in Terraform and GitLab CI/CD promoting builds across staging and production.",
-    outcome: "~90% less manual setup",
-    tags: ["Terraform", "AWS", "Docker", "Nginx", "GitLab CI/CD"],
+      "A Django and React app in Docker behind Nginx. Terraform provisions the AWS network and servers, and GitLab CI promotes builds from staging to production.",
+    outcome: "About 90% less manual setup",
+    tags: ["Terraform", "AWS", "Docker", "GitLab CI"],
     context: "Personal",
   },
   {
-    title: "Centralized Observability Platform",
+    title: "Monitoring and status page",
     description:
-      "Prometheus and Grafana across multi-environment on-prem infrastructure, with K3s metrics, alerting, and a public status page so non-technical stakeholders can see system health.",
-    outcome: "~50% faster incident detection",
-    tags: ["Prometheus", "Grafana", "K3s", "Alerting"],
+      "Prometheus and Grafana across several on-prem environments, with alerts for the team and a public status page for people who just want to know if things are up.",
+    outcome: "Incidents spotted about 50% sooner",
+    tags: ["Prometheus", "Grafana", "K3s"],
     context: "Personal",
   },
 ]
 
 export const writing = [
-  "MPI Cluster on EC2 (Parts 1–2)",
-  "RBAC in S3",
-  "Staging vs Production Environments",
-  "Domain and Route 53 Configuration",
-  "SSH Keys: Private and Public",
-  "AWS ECS using Terraform",
+  "Building an MPI cluster on EC2 (parts 1 and 2)",
+  "Role-based access control in S3",
+  "Staging vs. production environments",
+  "Setting up a domain with Route 53",
+  "SSH keys: private and public",
+  "Running AWS ECS with Terraform",
 ]
 
 export const certifications = [
   { name: "Certified in Cybersecurity (CC)", issuer: "ISC2", year: "2024" },
-  { name: "Microsoft Certified: Azure Fundamentals (AZ-900)", issuer: "Microsoft" },
-  { name: "AWS Certified Solutions Architect – Associate", issuer: "AWS", inProgress: true },
+  { name: "Azure Fundamentals (AZ-900)", issuer: "Microsoft" },
 ]
 
 export const education = {

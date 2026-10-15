@@ -8,9 +8,9 @@ export function StatsStrip() {
     <section aria-label="Key numbers" className="bg-newspaper-accent text-[#f8f7f2] border-y-4 border-double border-newspaper-border">
       <div className="container-padding py-6 md:py-8">
         <p className="newspaper-meta text-[0.6rem] md:text-[0.65rem] text-[#f8f7f2]/60 text-center mb-5">
-          By the Numbers · Results from production workloads
+          A few results from production work
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-6 max-w-5xl mx-auto">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
