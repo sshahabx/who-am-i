@@ -26,23 +26,23 @@ const jetBrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Shahab Alam — Cloud & DevOps Engineer",
-  description: "I build cloud, DevOps, and secure infrastructure systems. Specializing in scalable, secure, and efficient cloud solutions.",
-  keywords: ["DevOps", "Cloud Engineer", "AWS", "Kubernetes", "Terraform", "Infrastructure", "Security"],
-  authors: [{ name: "Shahab Alam" }],
+  title: "Muhammad Shahab Alam — DevOps / Platform Engineer",
+  description: "DevOps engineer with a cybersecurity background, building secure, governed cloud platforms on GCP and AWS.",
+  keywords: ["DevOps", "Platform Engineer", "GCP", "AWS", "GKE", "Kubernetes", "Terraform", "IAM", "Cloud Security", "SRE"],
+  authors: [{ name: "Muhammad Shahab Alam" }],
   icons: {
     icon: '/icon',
     apple: '/apple-icon',
   },
   openGraph: {
-    title: "Shahab Alam — Cloud & DevOps Engineer",
-    description: "I build cloud, DevOps, and secure infrastructure systems.",
+    title: "Muhammad Shahab Alam — DevOps / Platform Engineer",
+    description: "I turn ClickOps sprawl into version-controlled, least-privilege infrastructure.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shahab Alam — Cloud & DevOps Engineer",
-    description: "I build cloud, DevOps, and secure infrastructure systems.",
+    title: "Muhammad Shahab Alam — DevOps / Platform Engineer",
+    description: "I turn ClickOps sprawl into version-controlled, least-privilege infrastructure.",
   },
 }
 

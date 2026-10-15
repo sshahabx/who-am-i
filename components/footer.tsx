@@ -1,10 +1,17 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Twitter, Linkedin, BookOpen } from "lucide-react"
+import { Mail, Twitter, Linkedin, BookOpen, Github } from "lucide-react"
+import { profile } from "@/lib/profile"
 
 export function Footer() {
   const socialLinks = [
+    {
+      name: "GitHub",
+      href: profile.links.github,
+      icon: Github,
+      delay: 0.05
+    },
     {
       name: "Twitter",
       href: "https://x.com/ssshahab_",
@@ -47,7 +54,7 @@ export function Footer() {
                 SHAHAB ALAM
               </h2>
               <p className="newspaper-meta text-newspaper-text/50 text-[0.6rem] md:text-xs">
-                DevOps Engineer · Infrastructure Specialist
+                DevOps / Platform Engineer · Cloud, Security, Reliability
               </p>
             </motion.div>
           </div>
@@ -130,14 +137,14 @@ export function Footer() {
                   THE TECH TATLER · EST. 2025
                 </p>
                 <p className="newspaper-meta text-newspaper-text/50 text-[0.6rem] md:text-xs">
-                  Vol. 01 · Issue 2025 · Published Continuously
+                  Vol. 02 · Platform Edition · Published Continuously
                 </p>
               </div>
 
               <div className="newspaper-divider mt-2 md:mt-3" />
 
               <p className="font-merriweather text-newspaper-text/60 text-[0.6rem] md:text-xs italic mt-3 md:mt-4">
-                © 2025 Shahab Alam. All rights reserved.
+                © {new Date().getFullYear()} Muhammad Shahab Alam. All rights reserved.
               </p>
             </div>
           </motion.div>

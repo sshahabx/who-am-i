@@ -3,52 +3,43 @@
 import { motion } from "framer-motion"
 import { ExternalLink, Download } from "lucide-react"
 import Image from "next/image"
-import { ReadMore } from "@/components/ui/read-more"
+import { engineeringProjects } from "@/lib/profile"
+import { SectionHeader } from "@/components/sections/experience"
 import { useState, useEffect } from "react"
 
-const projects = [
+const sideBuilds = [
   {
     id: "kubernetes",
     name: "Kubernetes Visual Reference",
     tagline: "Learn Kubernetes visually.",
-    description: "A comprehensive visual reference covering core Kubernetes concepts including clusters, nodes, pods, services, deployments, and networking. Designed as a quick reference for engineers and learners to understand how these components interact within the Kubernetes ecosystem.",
-    link: "https://www.youtube.com/watch?v=X48VuDVv0do",
-    linkText: "Watch Course",
-    secondaryLink: "https://gitlab.com/ssshahab/k8s-3tier-notes-app",
-    secondaryLinkText: "View Project",
-    note: null,
+    description: "A one-page visual reference for clusters, nodes, pods, services, deployments, and networking, paired with a three-tier K8s notes app.",
+    links: [
+      { label: "Project", href: "https://gitlab.com/ssshahab/k8s-3tier-notes-app" },
+    ],
     image: "/previewk8s.png",
     imageAlt: "Kubernetes Visual Reference",
-    imageCaption: "Kubernetes Architecture — Visual Guide",
-    isDownloadable: true,
-    downloadPath: "/Kubernets.png"
+    downloadPath: "/Kubernets.png" as string | undefined,
   },
   {
     id: "turtle",
     name: "Turtle",
     tagline: "Track smarter. Apply better.",
-    description: "Turtle is a minimalist job applications tracker that brings order to the chaos of job hunting. It provides a clean single-page dashboard for managing all your job applications — no more messy spreadsheets or scattered notes.",
-    link: "https://trackwithturtle.com",
-    linkText: "View Live Site",
-    note: null,
+    description: "A minimalist job-application tracker: one clean dashboard instead of messy spreadsheets and scattered notes.",
+    links: [{ label: "Live site", href: "https://trackwithturtle.com" }],
     image: "/turtle.png",
-    imageAlt: "Turtle Dashboard",
-    imageCaption: "Turtle Dashboard — Simplifying Job Tracking",
-    isDownloadable: false
+    imageAlt: "Turtle dashboard",
+    downloadPath: undefined,
   },
   {
     id: "ecopilot",
     name: "EcoPilot",
     tagline: "Climate action, simplified.",
-    description: "Climate responsibility has long been treated as something only large corporations can take on — with consultants, sustainability teams, and expensive tools. EcoPilot changes that. It's a simple, friendly platform that helps small and medium-sized businesses measure their carbon footprint, understand their emissions, and take meaningful steps to reduce them — without complexity. Includes an AI assistant for guidance.",
-    link: "https://ecopilot.app",
-    linkText: "View Live Site",
-    note: null,
+    description: "Helps small and medium-sized businesses measure their carbon footprint and take practical steps to reduce it, with an AI assistant for guidance.",
+    links: [{ label: "Live site", href: "https://ecopilot.app" }],
     image: "/ecopilot.png",
-    imageAlt: "EcoPilot Dashboard",
-    imageCaption: "EcoPilot Insights — Making Climate Action Accessible",
-    isDownloadable: false
-  }
+    imageAlt: "EcoPilot dashboard",
+    downloadPath: undefined,
+  },
 ]
 
 export function Projects() {
@@ -104,188 +95,111 @@ export function Projects() {
     <section id="projects" className="section-padding-sm newspaper-bg paper-texture border-t border-newspaper-border/30">
       <div className="container-padding px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header - Compact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="mb-6 md:mb-8"
-          >
-            <div className="newspaper-divider mb-2" />
-            
-            {/* Edition Mark */}
-            <div className="newspaper-meta text-newspaper-text/50 text-[0.65rem] mb-2">
-              Vol. 01 Feature
-            </div>
+          <SectionHeader kicker="Section B · Features" title="Projects" deck="Platform builds, from GPU serving to identity automation." />
 
-            <h2 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-newspaper-accent tracking-tight newspaper-headline-spacing">
-              Personal Projects
-            </h2>
-            
-            <p className="font-merriweather text-xs md:text-sm text-newspaper-text/70 italic mt-1">
-              Building tools that simplify work and support sustainability.
-            </p>
-            
-            <div className="newspaper-divider mt-2" />
-          </motion.div>
-
-          {/* Projects with Images - Compact Layout */}
-          <div className="space-y-8 md:space-y-10">
-            {projects.map((project, index) => (
+          {/* Engineering projects: newspaper columns */}
+          <div className="grid md:grid-cols-2 border-t border-l border-newspaper-border/30">
+            {engineeringProjects.map((project, index) => (
               <motion.article
-                key={project.id}
+                key={project.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="border-t border-newspaper-border/30 pt-6 md:pt-8"
+                className="group border-r border-b border-newspaper-border/30 p-5 md:p-7 bg-white/30 hover:bg-white/70 transition-colors duration-300 flex flex-col"
               >
-                {/* Split Layout: Text + Image */}
-                <div className="flex flex-col lg:grid lg:grid-cols-[58%_42%] gap-5 md:gap-6 items-start">
-                  {/* Text Content - Left on Desktop */}
-                  <div className="order-2 lg:order-1 space-y-3 md:space-y-4 w-full">
-                    {/* Project Header - Compact */}
-                    <div>
-                      <h3 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-newspaper-accent newspaper-headline-spacing leading-tight">
-                        {project.name}
-                      </h3>
-                      
-                      <p className="font-playfair text-base md:text-lg lg:text-xl text-newspaper-text/80 italic mt-1 mb-2">
-                        {project.tagline}
-                      </p>
-                      
-                      <div className="newspaper-divider" />
-                    </div>
-
-                    {/* Project Description with ReadMore - Compact */}
-                    <ReadMore maxLines={3}>
-                      <p className="font-merriweather text-sm md:text-base text-newspaper-text/80 leading-relaxed newspaper-compact text-left md:text-justify">
-                        {project.description}
-                      </p>
-                    </ReadMore>
-
-                    {/* Additional Note (if exists) */}
-                    {project.note && (
-                      <div className="py-2 px-3 bg-white/50 border-l-2 border-newspaper-accent">
-                        <p className="text-[0.65rem] md:text-xs font-merriweather italic text-newspaper-text/70">
-                          {project.note}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* CTA Link - Newspaper style */}
-                    <div className="pt-2 border-t border-newspaper-border/20">
-                      {project.isDownloadable ? (
-                        <div className="space-y-3">
-                          {/* Download Button */}
-                          <button
-                            onClick={() => handleDownload(project.id, project.downloadPath!)}
-                            className="w-full px-4 py-2.5 border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 newspaper-meta text-xs flex items-center justify-center gap-2 group font-semibold"
-                          >
-                            <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300" />
-                            <span>Download Visual Reference</span>
-                          </button>
-                          
-                          {/* Download Counter */}
-                          {downloadCounts[project.id] !== undefined && (
-                            <div className="text-center">
-                              <p className="text-[0.6rem] newspaper-meta text-newspaper-text/50">
-                                {downloadCounts[project.id]} {downloadCounts[project.id] === 1 ? 'download' : 'downloads'}
-                              </p>
-                            </div>
-                          )}
-
-                          {/* Learning Resources */}
-                          <div className="pt-2 border-t border-newspaper-border/20">
-                            <p className="text-[0.6rem] newspaper-meta text-newspaper-text/50 mb-2">LEARNING RESOURCES:</p>
-                            <div className="flex flex-col gap-2">
-                              <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-newspaper-text/70 hover:text-newspaper-accent transition-all duration-300 group font-merriweather text-xs"
-                              >
-                                <span className="text-newspaper-accent font-bold">▪</span>
-                                <span className="underline-slide">{project.linkText}</span>
-                                <ExternalLink className="w-3 h-3 opacity-60" />
-                              </a>
-                              {project.secondaryLink && (
-                                <a
-                                  href={project.secondaryLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 text-newspaper-text/70 hover:text-newspaper-accent transition-all duration-300 group font-merriweather text-xs"
-                                >
-                                  <span className="text-newspaper-accent font-bold">▪</span>
-                                  <span className="underline-slide">{project.secondaryLinkText}</span>
-                                  <ExternalLink className="w-3 h-3 opacity-60" />
-                                </a>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full px-4 py-2.5 border-2 border-newspaper-border/50 hover:border-newspaper-accent text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-300 newspaper-meta text-xs flex items-center justify-center gap-2 group font-semibold"
-                        >
-                          <span>{project.linkText}</span>
-                        </a>
-                      )}
-                    </div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="newspaper-meta text-[0.6rem] text-newspaper-text/50">
+                    No. {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="newspaper-meta text-[0.6rem] px-2 py-0.5 border border-newspaper-border/40 text-newspaper-text/60">
+                    {project.context === "Work" ? "At work" : "Personal"}
+                  </span>
+                </div>
+                <h3 className="font-playfair text-xl md:text-2xl lg:text-3xl font-bold text-newspaper-accent leading-tight mb-2">
+                  {project.title}
+                </h3>
+                <p className="font-merriweather text-sm text-newspaper-text/80 leading-relaxed mb-4">
+                  {project.description}
+                </p>
+                <div className="mt-auto">
+                  <p className="font-playfair italic text-base md:text-lg text-newspaper-accent border-l-4 border-newspaper-accent pl-3 mb-4">
+                    {project.outcome}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 border border-newspaper-border/40 newspaper-meta text-newspaper-text/70 text-[0.6rem]">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-
-                  {/* Image - Right on Desktop, Top on Mobile */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="order-1 lg:order-2 w-full"
-                  >
-                    {/* Framed Screenshot - Compact */}
-                    <div className="relative">
-                      <div className={`${project.isDownloadable ? '' : 'bg-white border border-newspaper-border/40'} rounded-sm overflow-hidden shadow-soft hover:shadow-lg transition-shadow duration-300`}>
-                        <div className="relative aspect-[16/10] max-h-[45vh] lg:max-h-none">
-                          <Image
-                            src={project.image}
-                            alt={project.imageAlt}
-                            fill
-                            className="object-cover object-top"
-                            quality={project.isDownloadable ? 100 : 75}
-                            priority={index === 0}
-                          />
-                        </div>
-                      </div>
-                      
-                      {/* Image Caption - Compact */}
-                      <div className="mt-1.5 pt-1.5 border-t border-newspaper-border/20">
-                        <p className="text-[0.6rem] md:text-xs font-merriweather italic text-newspaper-text/60 text-center">
-                          {project.imageCaption}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
                 </div>
               </motion.article>
             ))}
           </div>
 
-          {/* Bottom Note - Compact */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mt-8 pt-4 border-t border-newspaper-border/30 text-center"
-          >
-            <p className="text-[0.6rem] md:text-xs newspaper-meta text-newspaper-text/50">
-              Featured Projects
-            </p>
-          </motion.div>
+          {/* Side builds */}
+          <div className="mt-10 md:mt-12">
+            <div className="flex items-baseline justify-between border-b-[3px] border-double border-newspaper-border/40 pb-2 mb-5">
+              <h3 className="font-playfair text-xl md:text-2xl font-bold text-newspaper-accent">Side Builds</h3>
+              <span className="newspaper-meta text-[0.6rem] text-newspaper-text/50">Shipped on weekends</span>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sideBuilds.map((project, index) => (
+                <motion.article
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.08 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col"
+                >
+                  <div className="relative aspect-[16/10] bg-white border border-newspaper-border/40 overflow-hidden shadow-soft">
+                    <Image
+                      src={project.image}
+                      alt={project.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                  <h4 className="font-playfair text-lg md:text-xl font-bold text-newspaper-accent mt-3 leading-tight">
+                    {project.name}
+                  </h4>
+                  <p className="font-playfair italic text-sm text-newspaper-text/70 mb-1.5">{project.tagline}</p>
+                  <p className="font-merriweather text-xs md:text-[0.8rem] text-newspaper-text/75 leading-relaxed mb-3">
+                    {project.description}
+                  </p>
+                  <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 pt-2 border-t border-newspaper-border/20">
+                    {project.downloadPath && (
+                      <button
+                        onClick={() => handleDownload(project.id, project.downloadPath!)}
+                        className="inline-flex items-center gap-1.5 newspaper-meta text-[0.65rem] text-newspaper-accent hover:text-newspaper-text transition-colors"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        Download
+                        {downloadCounts[project.id] !== undefined && (
+                          <span className="text-newspaper-text/50">({downloadCounts[project.id]})</span>
+                        )}
+                      </button>
+                    )}
+                    {project.links.map((l) => (
+                      <a
+                        key={l.href}
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 newspaper-meta text-[0.65rem] text-newspaper-text/70 hover:text-newspaper-accent transition-colors"
+                      >
+                        {l.label}
+                        <ExternalLink className="w-3 h-3 opacity-60" />
+                      </a>
+                    ))}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

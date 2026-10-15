@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Search, Home, User, Briefcase } from "lucide-react"
+import { Search, Home, Briefcase, FolderGit2, Layers } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -27,8 +27,9 @@ export function Navbar() {
 
   const links = [
     { href: "/", label: "HOME", icon: Home, disabled: false },
-    { href: "/#whoami", label: "ABOUT", icon: User, disabled: false },
-    { href: "/#projects", label: "PROJECTS", icon: Briefcase, disabled: false },
+    { href: "/#experience", label: "WORK", icon: Briefcase, disabled: false },
+    { href: "/#projects", label: "PROJECTS", icon: FolderGit2, disabled: false },
+    { href: "/#stack", label: "STACK", icon: Layers, disabled: false },
   ]
 
   const scrollToSection = (href: string, disabled: boolean) => {
@@ -157,7 +158,7 @@ export function Navbar() {
                   onClick={() => link.href === "/" ? window.scrollTo({ top: 0, behavior: "smooth" }) : scrollToSection(link.href, link.disabled)}
                   disabled={link.disabled}
                   className={cn(
-                    "flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-all duration-200 min-w-[70px]",
+                    "flex flex-col items-center gap-1 px-2 py-2 rounded-lg transition-all duration-200 min-w-[56px]",
                     isActive
                       ? "bg-newspaper-accent/10 text-newspaper-accent"
                       : "text-newspaper-text/60 hover:text-newspaper-accent hover:bg-newspaper-accent/5",
@@ -174,7 +175,7 @@ export function Navbar() {
             
             <button 
               onClick={() => document.dispatchEvent(new Event("open-command-palette"))}
-              className="flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-newspaper-text/60 hover:text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-200 min-w-[70px]"
+              className="flex flex-col items-center gap-1 px-2 py-2 rounded-lg text-newspaper-text/60 hover:text-newspaper-accent hover:bg-newspaper-accent/5 transition-all duration-200 min-w-[56px]"
             >
               <Search className="h-5 w-5" />
               <span className="text-[0.65rem] font-medium newspaper-meta">SEARCH</span>

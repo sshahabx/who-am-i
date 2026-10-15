@@ -1,18 +1,21 @@
 import { HeroSection } from "@/components/HeroSection"
+import { StatsStrip } from "@/components/sections/stats-strip"
+import { Experience } from "@/components/sections/experience"
 import { Projects } from "@/components/sections/projects"
-import { TypingStats } from "@/components/sections/typing-stats"
 import { TechTicker } from "@/components/sections/tech-ticker"
+import { Credentials } from "@/components/sections/credentials"
 import { Newsletter } from "@/components/sections/newsletter"
 
 export default function Home() {
   return (
     <>
       <HeroSection />
+      <StatsStrip />
+      <Experience />
       <Projects />
-      <TypingStats />
       <TechTicker />
+      <Credentials />
       <Newsletter />
     </>
   )
 }
-

@@ -51,7 +51,7 @@ export function Newsletter() {
                   The Tech Tatler
                 </h3>
                 <p className="font-merriweather text-xs md:text-sm text-newspaper-text/70 italic mt-1">
-                  Weekly insights on cloud infrastructure & DevOps
+                  Field notes on platform engineering and cloud security
                 </p>
               </motion.div>
             </div>
@@ -66,8 +66,8 @@ export function Newsletter() {
                 viewport={{ once: true }}
               >
                 <p className="font-merriweather text-xs md:text-sm text-newspaper-text/80 mb-3 md:mb-4 leading-relaxed text-center">
-                  Join hundreds of engineers receiving weekly technical insights. 
-                  No spam, unsubscribe anytime.
+                  Hands-on write-ups on Terraform, Kubernetes, IAM, and the infrastructure
+                  lessons that only show up in production. No spam, unsubscribe anytime.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-2.5">
@@ -94,7 +94,7 @@ export function Newsletter() {
                 </form>
 
                 <p className="text-[0.6rem] md:text-xs newspaper-meta text-newspaper-text/50 mt-2.5 text-center">
-                  Powered by Medium · Privacy Guaranteed
+                  Delivered via Medium
                 </p>
               </motion.div>
             </div>
@@ -102,7 +102,7 @@ export function Newsletter() {
             {/* Bottom decorative line - More Compact */}
             <div className="mt-4 md:mt-5 pt-3 md:pt-4 border-t border-newspaper-border/20">
               <p className="text-center text-[0.6rem] md:text-xs newspaper-meta text-newspaper-text/50">
-                EST. 2025 · VOL. 01 · ISSUE ONGOING
+                EST. 2025 · VOL. 02 · ISSUE ONGOING
               </p>
             </div>
           </div>
